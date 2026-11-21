@@ -1,0 +1,29 @@
+{
+  "_info": "Runda badawcza 1. Reguła wyboru ustalona PRZED uruchomieniem: zwycięzca = wariant z najwyższym CAGR na danych treningowych (dowolna dźwignia), który nie zbankrutował (max spadek > -85%). Holdout (2025-01..) liczony RAZ, tylko do raportu. Liczba prób: 6 wariantów x 2 dźwignie = 12.",
+  "period": "6y",
+  "train": ["2021-09-01", "2024-12-31"],
+  "holdout": ["2025-01-01", null],
+  "leverages": [1.0, 2.0],
+  "cost_1x": {"fee_rate": 0.005, "slippage": 0.0015, "borrow_rate_annual": 0.0},
+  "cost_lev": {"fee_rate": 0.001, "slippage": 0.0015, "borrow_rate_annual": 0.08, "margin_closeout_level": 0.5},
+  "base": {"top_n": 1, "hard_stop": 0.10, "trailing_stop": 0.15, "keep_rank": 3, "min_hold_days": 1,
+           "max_trades_per_day": 4, "bankrupt_floor_pct": 0.10},
+  "variants": {
+    "V1_baseline": {},
+    "V2_tygodniowy": {"min_hold_days": 7, "keep_rank": 5, "hard_stop": 0.20, "trailing_stop": 0.25},
+    "V3_tygodniowy_rezim200": {"min_hold_days": 7, "keep_rank": 5, "hard_stop": 0.20, "trailing_stop": 0.25,
+                               "regime_filter": true, "regime_sma": 200},
+    "V4_lewarETF_rezim": {"universe": ["TQQQ", "SOXL", "TECL", "UPRO", "TNA", "LABU"],
+                          "score_weights": {"ret5": 0, "ret20": 0.5, "ret60": 0.5},
+                          "min_hold_days": 7, "keep_rank": 3, "hard_stop": 0.25, "trailing_stop": 0.30,
+                          "regime_filter": true, "regime_sma": 200},
+    "V5_TQQQ_trend": {"universe": ["TQQQ"], "score_weights": {"ret5": 0, "ret20": 0.5, "ret60": 0.5},
+                      "min_hold_days": 1, "keep_rank": 1, "hard_stop": 0.5, "trailing_stop": 0.5,
+                      "regime_filter": true, "regime_sma": 200},
+    "V6_spolki_60d_top2": {"universe": ["NVDA", "TSLA", "AMD", "PLTR", "MSTR", "COIN", "SMCI", "HOOD", "MARA",
+                                        "RIOT", "IONQ", "RKLB", "SOFI", "AFRM", "UPST", "CVNA", "APP"],
+                           "score_weights": {"ret5": 0, "ret20": 0.3, "ret60": 0.7}, "top_n": 2,
+                           "min_hold_days": 7, "keep_rank": 6, "hard_stop": 0.20, "trailing_stop": 0.25,
+                           "regime_filter": true, "regime_sma": 100}
+  }
+}

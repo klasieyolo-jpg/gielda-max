@@ -6,6 +6,8 @@ limit transakcji dziennie, wyłącznik awaryjny, próg bankructwa.
 """
 from __future__ import annotations
 
+from datetime import date
+
 from . import broker
 
 
@@ -34,6 +36,7 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
     ts, day = ctx["ts"], ctx["day"]
     decisions, trades = [], []
     rank_of = {t: i + 1 for i, (t, _) in enumerate(ranked)}
+    regime_off = bool(cfg.get("regime_filter")) and not ctx.get("regime_ok", {}).get(cfg.get("regime_sma", 200), True)
 
     def log(action, ticker, reason, **kw):
         decisions.append({"ts": ts, "action": action, "ticker": ticker, "reason": reason, **kw})
@@ -59,7 +62,14 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
         pos["peak"] = max(pos["peak"], px)
         pos["last_price"] = px
         r = rank_of.get(t)
-        weak = (r is None or r > cfg["keep_rank"]) and pos["opened_day"] != day
+        held = (date.fromisoformat(day) - date.fromisoformat(pos["opened_day"])).days
+        if regime_off and cfg.get("regime_exit", True) and ctx["entry_window"]:
+            tr = broker.close_position(pf, t, px, cfg, ts, day, "RYNEK W TRENDZIE SPADKOWYM")
+            trades.append(tr)
+            log("CLOSE", t, f"filtr reżimu: {ctx.get('benchmark', 'QQQ')} pod średnią {cfg.get('regime_sma', 200)}d",
+                pnl_usd=round(tr["pnl_usd"], 2))
+            continue
+        weak = (r is None or r > cfg["keep_rank"]) and held >= cfg.get("min_hold_days", 1)
         if weak and ctx["entry_window"] and broker.trades_today(pf, day) < cfg["max_trades_per_day"]:
             tr = broker.close_position(pf, t, px, cfg, ts, day, "SŁABNĄCE MOMENTUM")
             trades.append(tr)
@@ -83,6 +93,9 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
         log("WAIT", None, f"handel wstrzymany (status={pf['status']}, wyłącznik={'ON' if ctx['trading_enabled'] else 'OFF'})")
         return decisions, trades
     if not ctx["entry_window"]:
+        return decisions, trades
+    if regime_off:
+        log("WAIT", None, f"filtr reżimu: rynek pod średnią {cfg.get('regime_sma', 200)}d — gotówka")
         return decisions, trades
     free = cfg["top_n"] - len(pf["positions"])
     candidates = [(t, m) for t, m in ranked if t not in pf["positions"] and t in prices][: max(free, 0)]

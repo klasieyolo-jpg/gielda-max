@@ -73,10 +73,11 @@ def tick(now_utc: datetime | None = None, fetch=None) -> int:
         print(f"Rynek zamknięty ({ctx['ny_time']} NY) — nic do zrobienia.")
         return 0
 
-    universe = list(dict.fromkeys(cfg_all["universe"] + [cfg_all["benchmark"]]))
+    extra = [t for c in cfg_all["portfolios"].values() for t in c.get("universe", [])]
+    universe = list(dict.fromkeys(cfg_all["universe"] + extra + [cfg_all["benchmark"]]))
     try:
         usdpln = fetch.fetch_usdpln()
-        daily = fetch.fetch_daily(universe)
+        daily = fetch.fetch_daily(universe, period="15mo")
         intra = fetch.fetch_intraday(universe) if ctx["market_open"] else {}
     except Exception as e:  # noqa: BLE001
         errors.append(f"DANE: {e}")
@@ -118,7 +119,11 @@ def tick(now_utc: datetime | None = None, fetch=None) -> int:
         day_idx = df.index[-1]
         if str(day_idx.date()) == ctx["day"]:
             df.loc[day_idx, "Close"] = px
-    ranked = signals.rank({t: daily[t] for t in prices if t in cfg_all["universe"]}, cfg_all["filters"])
+    live = {t: daily[t] for t in prices}
+    bench_df = daily.get(cfg_all["benchmark"])
+    ctx["benchmark"] = cfg_all["benchmark"]
+    ctx["regime_ok"] = {n: signals.regime_ok(bench_df, n) for n in (50, 100, 150, 200)}
+    ranked = signals.rank(live, cfg_all["filters"], None, cfg_all["universe"])  # do raportu
 
     if st is None:
         bench = cfg_all["benchmark"]
@@ -137,7 +142,8 @@ def tick(now_utc: datetime | None = None, fetch=None) -> int:
         for k in st["portfolios"]:
             if k == "BENCH":
                 continue
-            dec, trs = pm.decide_and_execute(st["portfolios"][k], st["params"][k], ranked, prices, ctx)
+            pr = signals.rank_for(st["params"][k], live, cfg_all["filters"], cfg_all["universe"])
+            dec, trs = pm.decide_and_execute(st["portfolios"][k], st["params"][k], pr, prices, ctx)
             all_decisions += [{**d, "portfolio": k} for d in dec]
             all_trades += [{**t, "portfolio": k} for t in trs]
 

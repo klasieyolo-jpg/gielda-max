@@ -20,18 +20,32 @@ from . import broker, pm, signals
 from .state import load_json, p, save_json
 
 
-def simulate(daily: dict, cfg: dict, filters: dict, start_usd: float, warmup: int = 40):
+def simulate(daily: dict, cfg: dict, filters: dict, start_usd: float, warmup: int = 40,
+             bench_df=None, start: str | None = None, end: str | None = None):
+    """Symulacja dzień po dniu. Historia sprzed 'start' służy tylko do wskaźników (bez podglądania przyszłości)."""
     dates = sorted(set().union(*[set(df.index) for df in daily.values()]))
+    dates = dates[warmup:]
+    if start:
+        dates = [d for d in dates if d >= pd.Timestamp(start)]
+    if end:
+        dates = [d for d in dates if d <= pd.Timestamp(end)]
     pf = broker.new_portfolio(start_usd)
     curve, closed = [], []
-    for day in dates[warmup:]:
-        hist = {t: df.loc[:day] for t, df in daily.items()}
+    weights, uni = cfg.get("score_weights"), cfg.get("universe")
+    for day in dates:
+        hist = {}
+        for t, df in daily.items():
+            i = df.index.searchsorted(day, side="right")
+            hist[t] = df.iloc[max(0, i - 80):i]
         today = {t: h for t, h in hist.items() if len(h) and h.index[-1] == day}
         prices = {t: float(h["Close"].iloc[-1]) for t, h in today.items()}
         bars = {t: {"open": float(h["Open"].iloc[-1]), "low": float(h["Low"].iloc[-1])} for t, h in today.items()}
-        ranked = signals.rank(today, filters)
+        ranked = signals.rank(today, filters, weights, uni)
         ds = str(pd.Timestamp(day).date())
         ctx = {"ts": ds + "T20:55:00Z", "day": ds, "entry_window": True, "trading_enabled": True, "bars": bars}
+        if bench_df is not None:
+            bh = bench_df.loc[:day]
+            ctx["regime_ok"] = {n: signals.regime_ok(bh, n) for n in (50, 100, 150, 200)}
         _, trs = pm.decide_and_execute(pf, cfg, ranked, prices, ctx)
         closed += [t for t in trs if t["side"] == "SELL"]
         for t, pos in pf["positions"].items():
@@ -98,11 +112,12 @@ def main(period: str = "2y") -> int:
     start_usd = cfg_all["start_capital_pln"] / usdpln
     uni = cfg_all["universe"]
     daily = data.fetch_daily(uni + [cfg_all["benchmark"]], period=period)
-    bench_df = daily.pop(cfg_all["benchmark"])
+    bench_df = daily[cfg_all["benchmark"]]
+    daily = {t: d for t, d in daily.items() if t != cfg_all["benchmark"]}
     missing = [t for t in uni if t not in daily]
     res = {}
     for k, cfg in cfg_all["portfolios"].items():
-        curve, closed = simulate(daily, copy.deepcopy(cfg), cfg_all["filters"], start_usd)
+        curve, closed = simulate(daily, copy.deepcopy(cfg), cfg_all["filters"], start_usd, bench_df=bench_df)
         res[k] = (metrics(curve, closed, start_usd), monte_carlo(closed, floor=cfg["bankrupt_floor_pct"]), curve)
     first_day = res["A"][2][0][0]
     b = bench_df.loc[first_day:]["Close"]
