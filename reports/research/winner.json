@@ -1,0 +1,45 @@
+{
+  "variant": "V6_spolki_60d_top2",
+  "leverage": 2.0,
+  "config": {
+    "top_n": 2,
+    "hard_stop": 0.2,
+    "trailing_stop": 0.25,
+    "keep_rank": 6,
+    "min_hold_days": 7,
+    "max_trades_per_day": 4,
+    "bankrupt_floor_pct": 0.1,
+    "fee_rate": 0.001,
+    "slippage": 0.0015,
+    "borrow_rate_annual": 0.08,
+    "margin_closeout_level": 0.5,
+    "universe": [
+      "NVDA",
+      "TSLA",
+      "AMD",
+      "PLTR",
+      "MSTR",
+      "COIN",
+      "SMCI",
+      "HOOD",
+      "MARA",
+      "RIOT",
+      "IONQ",
+      "RKLB",
+      "SOFI",
+      "AFRM",
+      "UPST",
+      "CVNA",
+      "APP"
+    ],
+    "score_weights": {
+      "ret5": 0,
+      "ret20": 0.3,
+      "ret60": 0.7
+    },
+    "regime_filter": true,
+    "regime_sma": 100,
+    "leverage": 2.0,
+    "name": "V6_spolki_60d_top2 2x"
+  }
+}
