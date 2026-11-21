@@ -28,7 +28,11 @@
     "AFRM",
     "UPST",
     "CVNA",
-    "APP"
+    "APP",
+    "SPXU",
+    "TZA",
+    "LABD",
+    "TECS"
   ],
   "benchmark": "QQQ",
   "filters": {

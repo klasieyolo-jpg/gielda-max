@@ -2,6 +2,11 @@ name: research
 # Ręcznie (Actions -> backtest -> Run workflow) i co niedzielę.
 on:
   workflow_dispatch:
+    inputs:
+      file:
+        default: research.json
+      tag:
+        default: LATEST
 
 permissions:
   contents: write
@@ -26,7 +31,7 @@ jobs:
         run: python -m unittest discover -s tests
       - name: Research
         env: { PYTHONPATH: src }
-        run: python -m gm.research
+        run: python -m gm.research "${{ github.event.inputs.file || 'research.json' }}" "${{ github.event.inputs.tag || 'LATEST' }}"
       - name: Zapis wyniku
         run: |
           git config user.name "gielda-max-bot"

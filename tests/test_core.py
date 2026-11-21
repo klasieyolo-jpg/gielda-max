@@ -174,5 +174,17 @@ class TestRegime(unittest.TestCase):
         self.assertNotAlmostEqual(curve[-1][1], 100.0)
 
 
+class TestBear(unittest.TestCase):
+    def test_bear_mode_trades_only_in_downtrend(self):
+        from gm import backtest
+        up = fake_daily(n=600, drift=0.006, seed=4)
+        daily = {t: fake_daily(n=600, seed=i, drift=0.004) for i, t in enumerate("XY")}
+        cfg = {"leverage": 1.0, "fee_rate": 0.0, "slippage": 0.0, "top_n": 1, "hard_stop": 0.2, "trailing_stop": 0.3,
+               "keep_rank": 3, "min_hold_days": 7, "max_trades_per_day": 4, "bankrupt_floor_pct": 0.1,
+               "regime_filter": True, "regime_mode": "bear", "regime_sma": 200}
+        curve, _ = backtest.simulate(daily, cfg, {"min_history_days": 30}, 100.0, bench_df=up, start="2026-01-01")
+        self.assertAlmostEqual(curve[-1][1], 100.0)  # rynek rośnie -> portfel na spadki stoi w gotówce
+
+
 if __name__ == "__main__":
     unittest.main()

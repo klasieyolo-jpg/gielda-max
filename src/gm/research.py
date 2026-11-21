@@ -18,9 +18,9 @@ def build_cfg(rc: dict, name: str, lev: float) -> dict:
     return cfg
 
 
-def main() -> int:
+def main(rc_file: str = "research.json", tag: str = "LATEST") -> int:
     cfg_all = load_json(p("config", "strategies.json"))
-    rc = load_json(p("config", "research.json"))
+    rc = load_json(p("config", rc_file))
     uni = list(dict.fromkeys(cfg_all["universe"] + [t for v in rc["variants"].values() for t in v.get("universe", [])]))
     usdpln = data.fetch_usdpln()
     daily = data.fetch_daily(uni + [cfg_all["benchmark"]], period=rc["period"])
@@ -59,7 +59,7 @@ def main() -> int:
 
     tr0, tr1 = rows[0][3]["train"][2:4]
     ho0, ho1 = rows[0][3]["holdout"][2:4]
-    L = [f"# Research — runda 1 ({len(rows)} prób), start {cfg_all['start_capital_pln']} zł",
+    L = [f"# Research — {rc.get('title', 'runda 1')} ({len(rows)} prób), start {cfg_all['start_capital_pln']} zł",
          "",
          f"Trening: {tr0} → {tr1} · Holdout (sprawdzany raz): {ho0} → {ho1}",
          "",
@@ -80,9 +80,9 @@ def main() -> int:
     if winner:
         L.append(f"\n**Zwycięzca wg reguły: {winner[0]} {winner[1]:g}x** — holdout: "
                  f"{winner[3]['holdout'][0]['total']:+.0%}.")
-        save_json(p("reports", "research", "winner.json"), {"variant": winner[0], "leverage": winner[1],
+        save_json(p("reports", "research", f"winner-{tag}.json"), {"variant": winner[0], "leverage": winner[1],
                                                             "config": winner[2]})
-    out = p("reports", "research", "LATEST.md")
+    out = p("reports", "research", f"{tag}.md")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
@@ -90,4 +90,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(*sys.argv[1:3]))
