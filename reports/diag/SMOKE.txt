@@ -1,7 +1,7 @@
 START: 300 zł = 74.22 USD
-OK 2026-11-21T23:56:06Z | transakcje: 1 | decyzje (bez HOLD): 4 | błędy: 0
+OK 2026-11-21T23:57:27Z | transakcje: 1 | decyzje (bez HOLD): 4 | błędy: 0
 EXIT=0
-# gielda-max — stan na 2026-11-21T23:56:06Z (18:56 NY)
+# gielda-max — stan na 2026-11-21T23:57:27Z (18:57 NY)
 
 | Portfel | Wartość | Dziś | Od startu | Max spadek | Transakcje zamkn. | Trafność | Koszty | Status |
 |---|---|---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@ EXIT=0
 Raporty dzienne: `reports/daily/` · Dziennik decyzji: `data/decisions.jsonl` · Transakcje: `data/trades.csv`
 
 _Wyniki wirtualne (paper trading) — żadne prawdziwe pieniądze nie biorą udziału._
-{"ts": "2026-11-21T23:56:06Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
-{"ts": "2026-11-21T23:56:06Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
-{"ts": "2026-11-21T23:56:06Z", "action": "BUY", "ticker": "TECS", "reason": "momentum: 5d +43.9%, 20d +67.2%, 60d +78.1%, ranking 1/6, dźwignia 1.0x", "margin_usd": 74.22, "portfolio": "C"}
-{"ts": "2026-11-21T23:56:06Z", "action": "WAIT", "ticker": null, "reason": "agent AI: błąd API Gemini: HTTP Error 429: Too Many Requests", "portfolio": "D"}
+{"ts": "2026-11-21T23:57:27Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
+{"ts": "2026-11-21T23:57:27Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
+{"ts": "2026-11-21T23:57:27Z", "action": "BUY", "ticker": "TECS", "reason": "momentum: 5d +43.9%, 20d +67.2%, 60d +78.1%, ranking 1/6, dźwignia 1.0x", "margin_usd": 74.22, "portfolio": "C"}
+{"ts": "2026-11-21T23:57:27Z", "action": "WAIT", "ticker": null, "reason": "agent AI: błąd API Gemini: The read operation timed out", "portfolio": "D"}
