@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import urllib.error
 import urllib.request
 
 API = "https://generativelanguage.googleapis.com/v1beta"
@@ -34,19 +35,31 @@ def _req(url: str, key: str, body: dict | None = None, timeout: int = 60) -> dic
         return json.loads(resp.read().decode())
 
 
-def pick_model(key: str, preferred: str | None = None) -> str:
-    """Wybiera aktualny model 'flash' z listy dostępnych (nazwy modeli się zmieniają)."""
+def candidate_models(key: str, preferred: str | None = None) -> list[str]:
+    """Lista modeli 'flash' do wypróbowania (nazwy modeli się zmieniają; darmowe limity różnią się per model)."""
     models = _req(f"{API}/models?pageSize=200", key).get("models", [])
     names = [m["name"] for m in models if "generateContent" in m.get("supportedGenerationMethods", [])]
-    if preferred and (f"models/{preferred}" in names or preferred in names):
-        return preferred if preferred.startswith("models/") else f"models/{preferred}"
-    flash = sorted([n for n in names if "flash" in n and not any(s in n for s in SKIP)], reverse=True)
-    if flash:
-        return flash[0]
-    any_flash = sorted([n for n in names if "flash" in n], reverse=True)
-    if any_flash:
-        return any_flash[0]
-    raise RuntimeError("Brak modelu flash w API Gemini")
+    out = []
+    if preferred:
+        out.append(preferred if preferred.startswith("models/") else f"models/{preferred}")
+    clean = sorted([n for n in names if "flash" in n and not any(x in n for x in SKIP)], reverse=True)
+    lite = sorted([n for n in names if "flash" in n and "lite" in n and not any(x in n for x in SKIP if x != "lite")],
+                  reverse=True)
+    rest = sorted([n for n in names if "flash" in n], reverse=True)
+    for n in clean + lite + rest:
+        if n not in out:
+            out.append(n)
+    if not out:
+        raise RuntimeError("Brak modelu flash w API Gemini")
+    return out
+
+
+def _err_text(e: Exception) -> str:
+    try:
+        body = json.loads(e.read().decode())  # type: ignore[attr-defined]
+        return f"{getattr(e, 'code', '')} {body.get('error', {}).get('message', '')[:180]}"
+    except Exception:  # noqa: BLE001
+        return str(e)[:200]
 
 
 def build_prompt(ctx, pf, cfg, metrics, prices, news, equity_usd) -> str:
@@ -75,15 +88,24 @@ def build_prompt(ctx, pf, cfg, metrics, prices, news, equity_usd) -> str:
 
 
 def ask(prompt: str, cfg: dict, key: str) -> tuple[dict, str]:
-    model = pick_model(key, cfg.get("llm_model"))
     sys_txt = SYSTEM.format(max_pos=cfg["top_n"], max_lev=int(cfg["max_leverage"]), hard_stop=cfg["hard_stop"],
                             trail=cfg["trailing_stop"])
     body = {"systemInstruction": {"parts": [{"text": sys_txt}]},
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
             "generationConfig": {"responseMimeType": "application/json", "temperature": 0.4}}
-    out = _req(f"{API}/{model}:generateContent", key, body, timeout=90)
-    text = out["candidates"][0]["content"]["parts"][0]["text"]
-    return json.loads(text), model
+    errors = []
+    for model in candidate_models(key, cfg.get("llm_model"))[:6]:
+        try:
+            out = _req(f"{API}/{model}:generateContent", key, body, timeout=90)
+            text = out["candidates"][0]["content"]["parts"][0]["text"]
+            return json.loads(text), model
+        except urllib.error.HTTPError as e:
+            errors.append(f"{model.split('/')[-1]}: {_err_text(e)}")
+            if e.code not in (429, 404, 403, 400, 500, 503):
+                break
+        except (KeyError, IndexError, json.JSONDecodeError) as e:
+            errors.append(f"{model.split('/')[-1]}: zła odpowiedź {e}")
+    raise RuntimeError(" | ".join(errors)[:600])
 
 
 def fetch_news(tickers: list[str], limit: int = 8) -> dict[str, list[str]]:
@@ -121,6 +143,6 @@ def decider(metrics_all: dict, news: dict):
         try:
             resp, model = ask(prompt, cfg, key)
         except Exception as e:  # noqa: BLE001
-            return None, f"błąd API Gemini: {str(e)[:200]}", None
+            return None, f"błąd API Gemini: {str(e)[:600]}", None
         return resp, None, model
     return run
