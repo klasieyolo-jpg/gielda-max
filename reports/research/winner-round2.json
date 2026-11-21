@@ -1,0 +1,34 @@
+{
+  "variant": "C1_inwersja_rezim200",
+  "leverage": 1.0,
+  "config": {
+    "top_n": 1,
+    "hard_stop": 0.25,
+    "trailing_stop": 0.3,
+    "keep_rank": 3,
+    "min_hold_days": 7,
+    "max_trades_per_day": 4,
+    "bankrupt_floor_pct": 0.1,
+    "fee_rate": 0.005,
+    "slippage": 0.0015,
+    "borrow_rate_annual": 0.0,
+    "universe": [
+      "SQQQ",
+      "SOXS",
+      "SPXU",
+      "TZA",
+      "LABD",
+      "TECS"
+    ],
+    "score_weights": {
+      "ret5": 0,
+      "ret20": 0.5,
+      "ret60": 0.5
+    },
+    "regime_filter": true,
+    "regime_mode": "bear",
+    "regime_sma": 200,
+    "leverage": 1.0,
+    "name": "C1_inwersja_rezim200 1x"
+  }
+}
