@@ -96,7 +96,7 @@ def ask(prompt: str, cfg: dict, key: str) -> tuple[dict, str]:
     errors = []
     for model in candidate_models(key, cfg.get("llm_model"))[:6]:
         try:
-            out = _req(f"{API}/{model}:generateContent", key, body, timeout=90)
+            out = _req(f"{API}/{model}:generateContent", key, body, timeout=50)
             text = out["candidates"][0]["content"]["parts"][0]["text"]
             return json.loads(text), model
         except urllib.error.HTTPError as e:
@@ -105,6 +105,8 @@ def ask(prompt: str, cfg: dict, key: str) -> tuple[dict, str]:
                 break
         except (KeyError, IndexError, json.JSONDecodeError) as e:
             errors.append(f"{model.split('/')[-1]}: zła odpowiedź {e}")
+        except (TimeoutError, OSError) as e:  # timeout / problem sieci -> następny model
+            errors.append(f"{model.split('/')[-1]}: {str(e)[:80]}")
     raise RuntimeError(" | ".join(errors)[:600])
 
 
