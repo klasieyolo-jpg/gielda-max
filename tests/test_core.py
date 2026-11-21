@@ -120,8 +120,8 @@ class TestTick(unittest.TestCase):
         # 2026-11-23 to poniedziałek. 19:30 UTC = 14:30 NY (okno wejść), 21:10 UTC = 16:10 NY (raport)
         self.assertEqual(self.run.tick(datetime(2026, 11, 23, 19, 30, tzinfo=timezone.utc), self.fetch), 0)
         st = json.loads((self.tmp / "state/portfolios.json").read_text())
-        self.assertEqual(len(st["portfolios"]["A"]["positions"]), 1)
-        self.assertEqual(len(st["portfolios"]["B"]["positions"]), 1)
+        self.assertGreaterEqual(len(st["portfolios"]["A"]["positions"]), 1)
+        self.assertGreaterEqual(len(st["portfolios"]["B"]["positions"]), 1)
         self.assertEqual(len(st["portfolios"]["BENCH"]["positions"]), 1)
         # polecenie: pauza B + próba zmiany zamrożonego A
         inbox = {"commands": [{"id": "c1", "cmd": "PAUSE", "portfolio": "B"},
@@ -131,8 +131,9 @@ class TestTick(unittest.TestCase):
         self.assertEqual(self.run.tick(datetime(2026, 11, 23, 20, 0, tzinfo=timezone.utc), self.fetch), 0)
         st = json.loads((self.tmp / "state/portfolios.json").read_text())
         self.assertEqual(st["portfolios"]["B"]["status"], "PAUSED")
-        self.assertEqual(st["params"]["A"]["leverage"], 1.0)
-        self.assertEqual(st["params"]["B"]["leverage"], 3.0)
+        cfg = json.loads((self.tmp / "config/strategies.json").read_text())
+        self.assertEqual(st["params"]["A"]["leverage"], cfg["portfolios"]["A"]["leverage"])
+        self.assertEqual(st["params"]["B"]["leverage"], cfg["portfolios"]["B"]["leverage"])
         log = (self.tmp / "data/commands_log.jsonl").read_text()
         self.assertIn("zamrożony", log)
         self.assertIn("poza granicami", log)

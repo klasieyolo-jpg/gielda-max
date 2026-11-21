@@ -5,6 +5,7 @@ DANE -> SKANER/ANALITYK -> POLECENIA -> PM + RYZYKO -> EGZEKUCJA (wirtualna) -> 
 from __future__ import annotations
 
 import copy
+import os
 import sys
 from datetime import datetime, time as dtime, timezone
 from zoneinfo import ZoneInfo
@@ -67,6 +68,9 @@ def tick(now_utc: datetime | None = None, fetch=None) -> int:
     st = load_json(p("state", "portfolios.json"))
     ctx = market_context(now_utc, cfg_all)
     ctx["trading_enabled"] = bool(control.get("trading_enabled", True))
+    smoke = bool(os.environ.get("GM_SMOKE"))  # test na prawdziwych danych poza sesją (bez zapisu do repo)
+    if smoke:
+        ctx.update(market_open=True, entry_window=True, after_close=False)
     errors = []
 
     if not ctx["market_open"] and not (ctx["after_close"] and st and st.get("last_report_day") != ctx["day"]):
@@ -88,12 +92,12 @@ def tick(now_utc: datetime | None = None, fetch=None) -> int:
             report.alert(f"⚠️ gielda-max: błąd pobierania danych — brak handlu w tym cyklu.\n{e}")
         return 1
 
-    if ctx["market_open"] and intra and min(q["age_min"] for q in intra.values()) > 240:
+    if ctx["market_open"] and intra and min(q["age_min"] for q in intra.values()) > 240 and not smoke:
         print("Brak dzisiejszych notowań — prawdopodobnie święto giełdowe w USA.")
         return 0
 
     # Ceny: świeże notowania 5-min; walidacja (agent ryzyka: błędne dane)
-    max_age = cfg_all["schedule"]["max_data_age_minutes"]
+    max_age = 1e9 if smoke else cfg_all["schedule"]["max_data_age_minutes"]
     max_jump = cfg_all["filters"]["max_intraday_jump_vs_prev_close"]
     prices = {}
     for t, df in daily.items():

@@ -114,6 +114,6 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
         tr = broker.open_position(pf, t, prices[t], margin, cfg, ts, day)
         trades.append(tr)
         log("SWITCH" if was_switch else "BUY", t,
-            f"momentum: 5d {m['ret5']:+.1%}, 20d {m['ret20']:+.1%}, ranking {rank_of[t]}/{len(ranked)}, dźwignia {cfg['leverage']}x",
+            f"momentum: 5d {m['ret5']:+.1%}, 20d {m['ret20']:+.1%}, 60d {m.get('ret60', 0):+.1%}, ranking {rank_of[t]}/{len(ranked)}, dźwignia {cfg['leverage']}x",
             margin_usd=round(margin, 2))
     return decisions, trades

@@ -17,12 +17,11 @@ Co 30 min w czasie sesji w USA (ok. 15:30–22:00 czasu polskiego) GitHub Action
 | Wyniki | `src/gm/report.py` | raport dzienny + Telegram |
 | Quant | `src/gm/backtest.py` | test na historii z kosztami, Monte Carlo, porównanie z kup-i-trzymaj |
 
-## Portfele (każdy 300 zł)
-- **A — Momentum MAX**: cały kapitał w 1 najsilniejszą akcję/ETF (1x). **Zamrożony** — nie zmienia zasad.
-- **B — Turbo 3x**: to samo, ale z dźwignią 3x jak na CFD (likwidacja przy 50% depozytu). Może być sterowany poleceniami.
-- **BENCH**: kup i trzymaj QQQ — punkt odniesienia.
-
-Uniwersum: lewarowane ETF-y (TQQQ, SOXL, LABU…) i bardzo zmienne spółki (TSLA, MSTR, COIN, IONQ…) — `config/strategies.json`.
+## Portfele (każdy 300 zł) — od 2026-11-23
+Wybrane w rundzie research 1 (`reports/research/LATEST.md`, 12 prób, trening 2021-09..2024-12, holdout 2025-01..2026-11).
+- **A — V6** (zamrożony): 2 najsilniejsze spółki (momentum 20/60 dni) z 17 bardzo zmiennych (MSTR, COIN, IONQ…), dźwignia 2x, handel tylko gdy QQQ nad średnią 100 dni. Zwycięzca reguły (trening +844%), ale w holdoucie −91%.
+- **B — V4** (sterowany przez AI): 1 lewarowany ETF (TQQQ, SOXL, TECL, UPRO, TNA, LABU), dźwignia 2x, tylko gdy QQQ nad średnią 200 dni. Trening −81%, holdout +155%. Wybrany ze znajomością holdoutu, więc ten wynik nie jest niezależnym dowodem.
+- **BENCH**: kup i trzymaj QQQ.
 
 ## Gdzie patrzeć
 - `reports/LATEST.md` — stan teraz · `reports/daily/` — raporty dzienne · `reports/backtest/LATEST.md` — backtest
