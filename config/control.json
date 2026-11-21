@@ -1,0 +1,4 @@
+{
+  "_info": "AWARYJNY WYŁĄCZNIK. Ustaw trading_enabled na false, żeby wstrzymać wszystkie nowe transakcje (stop-lossy dalej działają).",
+  "trading_enabled": true
+}

@@ -1,0 +1,60 @@
+name: tick
+# Cykl agentów co 30 min w czasie sesji USA (cron w UTC; kod sam sprawdza godzinę w Nowym Jorku).
+on:
+  schedule:
+    - cron: "5,35 13-21 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gielda-max-state
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Czy giełda w USA jest teraz otwarta?
+        id: gate
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          from datetime import datetime, time
+          from zoneinfo import ZoneInfo
+          ny = datetime.now(ZoneInfo("America/New_York"))
+          ok = ny.weekday() < 5 and time(9, 25) <= ny.time() <= time(16, 45)
+          print(f"run={'true' if ok else 'false'}")
+          EOF
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalacja
+        if: steps.gate.outputs.run == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Cykl agentów
+        if: steps.gate.outputs.run == 'true'
+        env:
+          PYTHONPATH: src
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m gm.run
+
+      - name: Zapis stanu do repo
+        if: always() && steps.gate.outputs.run == 'true'
+        run: |
+          git config user.name "gielda-max-bot"
+          git config user.email "gielda-max-bot@users.noreply.github.com"
+          git add -A state data reports || true
+          git diff --cached --quiet && exit 0
+          git commit -m "tick $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 7; done
+          exit 1

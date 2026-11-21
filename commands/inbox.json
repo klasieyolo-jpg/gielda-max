@@ -1,0 +1,4 @@
+{
+  "_info": "Skrzynka poleceń dla agentów. Każde polecenie ma unikalne id i jest wykonywane raz. Typy: PAUSE, RESUME, CLOSE, SET. Wynik trafia do data/commands_log.jsonl. Przykład: {\"id\": \"2026-11-23-01\", \"cmd\": \"SET\", \"portfolio\": \"B\", \"param\": \"leverage\", \"value\": 4, \"reason\": \"...\"}",
+  "commands": []
+}
