@@ -71,7 +71,8 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
             log("CLOSE", t, f"filtr reżimu ({cfg.get('regime_mode', 'bull')}): zmiana trendu {ctx.get('benchmark', 'QQQ')} vs średnia {cfg.get('regime_sma', 200)}d",
                 pnl_usd=round(tr["pnl_usd"], 2))
             continue
-        weak = (r is None or r > cfg["keep_rank"]) and held >= cfg.get("min_hold_days", 1)
+        weak = (cfg.get("agent") != "llm" and (r is None or r > cfg["keep_rank"])
+                and held >= cfg.get("min_hold_days", 1))
         if weak and ctx["entry_window"] and broker.trades_today(pf, day) < cfg["max_trades_per_day"]:
             tr = broker.close_position(pf, t, px, cfg, ts, day, "SŁABNĄCE MOMENTUM")
             trades.append(tr)
@@ -93,6 +94,10 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
     # 3) nowe wejścia
     if pf["status"] != "ACTIVE" or not ctx["trading_enabled"]:
         log("WAIT", None, f"handel wstrzymany (status={pf['status']}, wyłącznik={'ON' if ctx['trading_enabled'] else 'OFF'})")
+        return decisions, trades
+    if cfg.get("agent") == "llm":
+        if ctx.get("llm_window") and ctx.get("llm"):
+            _llm_step(pf, cfg, prices, ctx, eq, log, trades)
         return decisions, trades
     if not ctx["entry_window"]:
         return decisions, trades
@@ -119,3 +124,59 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
             f"momentum: 5d {m['ret5']:+.1%}, 20d {m['ret20']:+.1%}, 60d {m.get('ret60', 0):+.1%}, ranking {rank_of[t]}/{len(ranked)}, dźwignia {cfg['leverage']}x",
             margin_usd=round(margin, 2))
     return decisions, trades
+
+
+def _llm_step(pf, cfg, prices, ctx, eq, log, trades):
+    """Agent AI proponuje, agent ryzyka (ten kod) waliduje i wykonuje albo odrzuca."""
+    ts, day = ctx["ts"], ctx["day"]
+    resp, err, model = ctx["llm"](pf, cfg, prices, ctx, eq)
+    if err:
+        log("WAIT", None, f"agent AI: {err}")
+        return
+    allowed = set(ctx.get("universe", [])) | set(cfg.get("universe") or [])
+    acts = resp.get("actions", []) if isinstance(resp, dict) else []
+    view = str(resp.get("view", ""))[:300] if isinstance(resp, dict) else ""
+    if view:
+        log("VIEW", None, f"agent AI ({model}): {view}")
+    acts = sorted([a for a in acts if isinstance(a, dict)], key=lambda a: str(a.get("action", "")).upper() != "CLOSE")
+    for a in acts[:8]:
+        act = str(a.get("action", "")).upper()
+        t = str(a.get("ticker") or "").upper().strip() or None
+        why = str(a.get("reason", ""))[:240]
+        if broker.trades_today(pf, day) >= cfg["max_trades_per_day"] and act in ("BUY", "CLOSE"):
+            log("REJECT", t, f"AI chciało {act}, ale limit transakcji na dziś. Powód AI: {why}")
+            continue
+        if act == "CLOSE":
+            if t in pf["positions"] and t in prices:
+                tr = broker.close_position(pf, t, prices[t], cfg, ts, day, "DECYZJA AI")
+                trades.append(tr)
+                log("CLOSE", t, f"AI: {why}", pnl_usd=round(tr["pnl_usd"], 2), model=model)
+            else:
+                log("REJECT", t, f"AI chciało zamknąć pozycję, której nie ma / brak ceny. Powód AI: {why}")
+        elif act == "BUY":
+            if t not in allowed or t not in prices:
+                log("REJECT", t, f"AI chciało kupić instrument spoza listy / bez ceny. Powód AI: {why}")
+                continue
+            if t in pf["positions"]:
+                log("REJECT", t, f"AI chciało dokupić — dokładanie do pozycji wyłączone. Powód AI: {why}")
+                continue
+            if len(pf["positions"]) >= cfg["top_n"]:
+                log("REJECT", t, f"AI chciało kupić, ale limit {cfg['top_n']} pozycji. Powód AI: {why}")
+                continue
+            try:
+                w = min(max(float(a.get("weight", 0)), 0.0), 1.0)
+                lev = min(max(float(a.get("leverage", 1)), 1.0), float(cfg["max_leverage"]))
+            except (TypeError, ValueError):
+                log("REJECT", t, "AI podało złe liczby (weight/leverage)")
+                continue
+            margin = min(w * broker.equity(pf, prices), pf["cash_usd"])
+            if margin < 1:
+                log("REJECT", t, f"AI: za mało gotówki na zakup (weight {w:.0%}). Powód AI: {why}")
+                continue
+            tr = broker.open_position(pf, t, prices[t], margin, {**cfg, "leverage": lev}, ts, day)
+            trades.append(tr)
+            log("BUY", t, f"AI: {why} (waga {w:.0%}, dźwignia {lev:g}x)", margin_usd=round(margin, 2), model=model)
+        elif act in ("HOLD", "WAIT"):
+            log(act, t, f"AI: {why}", model=model)
+        else:
+            log("REJECT", t, f"AI podało nieznaną akcję {act}")

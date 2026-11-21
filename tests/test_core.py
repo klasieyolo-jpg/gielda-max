@@ -186,5 +186,37 @@ class TestBear(unittest.TestCase):
         self.assertAlmostEqual(curve[-1][1], 100.0)  # rynek rośnie -> portfel na spadki stoi w gotówce
 
 
+class TestLLMAgent(unittest.TestCase):
+    def test_validation(self):
+        from gm import broker, pm
+        cfg = json.loads((ROOT / "config/strategies.json").read_text())["portfolios"]["D"]
+        pf = broker.new_portfolio(100.0)
+        resp = {"view": "test", "actions": [
+            {"action": "BUY", "ticker": "TSLA", "weight": 0.5, "leverage": 9, "reason": "x"},
+            {"action": "BUY", "ticker": "HACK", "weight": 0.5, "leverage": 1, "reason": "spoza listy"},
+            {"action": "BUY", "ticker": "NVDA", "weight": 0.9, "leverage": 1, "reason": "y"},
+            {"action": "CLOSE", "ticker": "AMD", "reason": "nie ma"}]}
+        ctx = {"ts": "2026-11-23T16:00:00Z", "day": "2026-11-23", "entry_window": False, "trading_enabled": True,
+               "llm_window": True, "universe": ["TSLA", "NVDA", "AMD"],
+               "llm": lambda *a: (resp, None, "models/test")}
+        dec, trs = pm.decide_and_execute(pf, cfg, [], {"TSLA": 10.0, "NVDA": 20.0, "HACK": 1.0}, ctx)
+        self.assertEqual(pf["positions"]["TSLA"]["leverage"], 3.0)  # przycięte do max 3x
+        self.assertIn("NVDA", pf["positions"])
+        self.assertNotIn("HACK", pf["positions"])
+        self.assertGreaterEqual(pf["cash_usd"], -1e-9)  # nie wydał więcej niż ma
+        self.assertEqual(sum(d["action"] == "REJECT" for d in dec), 2)
+
+    def test_no_key_waits(self):
+        from gm import broker, llm, pm
+        os.environ.pop("GEMINI_API_KEY", None)
+        cfg = json.loads((ROOT / "config/strategies.json").read_text())["portfolios"]["D"]
+        pf = broker.new_portfolio(100.0)
+        ctx = {"ts": "t", "day": "2026-11-23", "entry_window": True, "trading_enabled": True, "llm_window": True,
+               "universe": [], "llm": llm.decider({}, {})}
+        dec, trs = pm.decide_and_execute(pf, cfg, [], {}, ctx)
+        self.assertEqual(trs, [])
+        self.assertIn("GEMINI_API_KEY", dec[-1]["reason"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -10,7 +10,7 @@ import sys
 from datetime import datetime, time as dtime, timezone
 from zoneinfo import ZoneInfo
 
-from . import broker, commands, pm, report, signals
+from . import broker, commands, llm, pm, report, signals
 from .state import append_csv, append_jsonl, load_json, p, save_json
 
 NY = ZoneInfo("America/New_York")
@@ -136,6 +136,19 @@ def tick(now_utc: datetime | None = None, fetch=None) -> int:
             return 1
         st = init_state(cfg_all, usdpln, prices[bench], ctx)
         print(f"START: {cfg_all['start_capital_pln']} zł = {st['portfolios']['A']['cash_usd']:.2f} USD")
+
+    # Agent AI (portfel D): metryki wszystkich instrumentów + newsy, raz na cykl
+    if any(c.get("agent") == "llm" for c in (st or {}).get("params", cfg_all["portfolios"]).values()):
+        ny_now = now_utc.astimezone(NY).time()
+        ctx["llm_window"] = ctx["market_open"] and (smoke or dtime(10, 0) <= ny_now <= dtime(15, 50))
+        if ctx["llm_window"]:
+            metrics_all = {t: m for t in live if (m := signals.analyze(live[t], cfg_all["filters"],
+                                                                         {"ret5": 1, "ret20": 1, "ret60": 1}))}
+            top = sorted(metrics_all, key=lambda t: -abs(metrics_all[t]["ret5"]))
+            held = [t for k, pf in (st or {}).get("portfolios", {}).items() for t in pf["positions"]]
+            news = llm.fetch_news(list(dict.fromkeys(held + top)), limit=8)
+            ctx["llm"] = llm.decider(metrics_all, news)
+    ctx["universe"] = cfg_all["universe"]
 
     all_decisions, all_trades = [], []
     if ctx["market_open"]:

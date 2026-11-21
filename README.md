@@ -22,6 +22,7 @@ Wybrane w rundzie research 1 (`reports/research/LATEST.md`, 12 prób, trening 20
 - **A — V6** (zamrożony): 2 najsilniejsze spółki (momentum 20/60 dni) z 17 bardzo zmiennych (MSTR, COIN, IONQ…), dźwignia 2x, handel tylko gdy QQQ nad średnią 100 dni. Zwycięzca reguły (trening +844%), ale w holdoucie −91%.
 - **B — V4** (sterowany przez AI): 1 lewarowany ETF (TQQQ, SOXL, TECL, UPRO, TNA, LABU), dźwignia 2x, tylko gdy QQQ nad średnią 200 dni. Trening −81%, holdout +155%. Wybrany ze znajomością holdoutu, więc ten wynik nie jest niezależnym dowodem.
 - **C — C1** (zamrożony): 1 odwrotny ETF (SQQQ, SOXS, SPXU, TZA, LABD, TECS — zarabiają, gdy rynek spada), tylko gdy QQQ pod średnią 200 dni. Zwycięzca rundy 2 wg reguły: trening −78%, holdout −38% (`reports/research/round2.md`).
+- **D — Agent AI (Gemini)**: model językowy co 30 min dostaje dane (ruchy cen, trend rynku, nagłówki newsów) i sam decyduje: kup / zamknij / trzymaj / czekaj, do 3 pozycji, dźwignia do 3x. Kod sprawdza każdą decyzję (lista instrumentów, limity, gotówka) i pilnuje stop-lossów. Wymaga sekretu `GEMINI_API_KEY`. Nie da się go uczciwie przetestować na historii — tylko na żywo.
 - **BENCH**: kup i trzymaj QQQ.
 
 ## Gdzie patrzeć

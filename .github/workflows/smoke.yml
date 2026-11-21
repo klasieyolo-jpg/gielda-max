@@ -22,7 +22,9 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - name: Smoke
-        env: { PYTHONPATH: src }
+        env:
+          PYTHONPATH: src
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: T=$(mktemp -d); cp -r config commands $T/; GM_ROOT=$T GM_SMOKE=1 python -m gm.run > reports/diag/SMOKE.txt 2>&1; echo EXIT=$? >> reports/diag/SMOKE.txt; cat $T/reports/LATEST.md >> reports/diag/SMOKE.txt 2>&1; tail -n 40 $T/data/decisions.jsonl >> reports/diag/SMOKE.txt 2>&1; cat reports/diag/SMOKE.txt
       - name: Zapis wyniku
         run: |
