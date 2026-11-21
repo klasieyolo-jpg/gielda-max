@@ -1,5 +1,5 @@
 {
-  "_info": "Portfele na żywo od 2026-11-23 (runda research 1). A = zwycięzca reguły (zamrożony). B = V4 wybrany z wiedzą o holdoucie (holdout dla B nie jest już niezależny). Koszty to ZAŁOŻENIA [?].",
+  "_info": "Portfele na żywo od 2026-11-23 (runda research 1). A = zwycięzca reguły (zamrożony). B = V4 wybrany z wiedzą o holdoucie (holdout dla B nie jest już niezależny). Koszty to ZAŁOŻENIA [?]. C = zwycięzca rundy 2 wg reguły (na spadki).",
   "start_capital_pln": 300,
   "universe": [
     "TQQQ",
@@ -113,6 +113,37 @@
       "leverage": 2.0,
       "name": "V4 lewarowane ETF + filtr rynku, 2x (sterowany przez AI)",
       "frozen": false
+    },
+    "C": {
+      "top_n": 1,
+      "hard_stop": 0.25,
+      "trailing_stop": 0.3,
+      "keep_rank": 3,
+      "min_hold_days": 7,
+      "max_trades_per_day": 4,
+      "bankrupt_floor_pct": 0.1,
+      "fee_rate": 0.005,
+      "slippage": 0.0015,
+      "borrow_rate_annual": 0.0,
+      "universe": [
+        "SQQQ",
+        "SOXS",
+        "SPXU",
+        "TZA",
+        "LABD",
+        "TECS"
+      ],
+      "score_weights": {
+        "ret5": 0,
+        "ret20": 0.5,
+        "ret60": 0.5
+      },
+      "regime_filter": true,
+      "regime_mode": "bear",
+      "regime_sma": 200,
+      "leverage": 1.0,
+      "name": "C1 odwrotne ETF na spadki (QQQ pod średnią 200d), 1x (zwycięzca rundy 2, zamrożony)",
+      "frozen": true
     }
   },
   "bounds": {

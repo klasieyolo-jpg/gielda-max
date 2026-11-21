@@ -21,6 +21,7 @@ Co 30 min w czasie sesji w USA (ok. 15:30–22:00 czasu polskiego) GitHub Action
 Wybrane w rundzie research 1 (`reports/research/LATEST.md`, 12 prób, trening 2021-09..2024-12, holdout 2025-01..2026-11).
 - **A — V6** (zamrożony): 2 najsilniejsze spółki (momentum 20/60 dni) z 17 bardzo zmiennych (MSTR, COIN, IONQ…), dźwignia 2x, handel tylko gdy QQQ nad średnią 100 dni. Zwycięzca reguły (trening +844%), ale w holdoucie −91%.
 - **B — V4** (sterowany przez AI): 1 lewarowany ETF (TQQQ, SOXL, TECL, UPRO, TNA, LABU), dźwignia 2x, tylko gdy QQQ nad średnią 200 dni. Trening −81%, holdout +155%. Wybrany ze znajomością holdoutu, więc ten wynik nie jest niezależnym dowodem.
+- **C — C1** (zamrożony): 1 odwrotny ETF (SQQQ, SOXS, SPXU, TZA, LABD, TECS — zarabiają, gdy rynek spada), tylko gdy QQQ pod średnią 200 dni. Zwycięzca rundy 2 wg reguły: trening −78%, holdout −38% (`reports/research/round2.md`).
 - **BENCH**: kup i trzymaj QQQ.
 
 ## Gdzie patrzeć
