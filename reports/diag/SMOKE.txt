@@ -1,13 +1,14 @@
 START: 300 zł = 74.22 USD
-OK 2026-11-21T23:47:04Z | transakcje: 1 | decyzje (bez HOLD): 3 | błędy: 0
+OK 2026-11-21T23:56:06Z | transakcje: 1 | decyzje (bez HOLD): 4 | błędy: 0
 EXIT=0
-# gielda-max — stan na 2026-11-21T23:47:04Z (18:47 NY)
+# gielda-max — stan na 2026-11-21T23:56:06Z (18:56 NY)
 
 | Portfel | Wartość | Dziś | Od startu | Max spadek | Transakcje zamkn. | Trafność | Koszty | Status |
 |---|---|---|---|---|---|---|---|---|
 | A — V6 spółki momentum 60d, top2, 2x (zwycięzca reguły, zamrożony) | 300.00 zł | +0.0% | +0.0% | 0.0% | 0 | - | 0.00 zł | ACTIVE |
 | B — V4 lewarowane ETF + filtr rynku, 2x (sterowany przez AI) | 300.00 zł | +0.0% | +0.0% | 0.0% | 0 | - | 0.00 zł | ACTIVE |
 | C — C1 odwrotne ETF na spadki (QQQ pod średnią 200d), 1x (zwycięzca rundy 2, zamrożony) | 298.05 zł | -0.6% | -0.6% | -0.6% | 0 | - | 1.50 zł | ACTIVE |
+| D — Agent AI (Gemini) — sam wybiera, kupuje i sprzedaje, dźwignia do 3x | 300.00 zł | +0.0% | +0.0% | 0.0% | 0 | - | 0.00 zł | ACTIVE |
 | BENCH — Benchmark: kup i trzymaj QQQ | 298.35 zł | -0.5% | -0.5% | -0.5% | 0 | - | 0.00 zł | ACTIVE |
 
 ## Otwarte pozycje
@@ -24,6 +25,7 @@ EXIT=0
 Raporty dzienne: `reports/daily/` · Dziennik decyzji: `data/decisions.jsonl` · Transakcje: `data/trades.csv`
 
 _Wyniki wirtualne (paper trading) — żadne prawdziwe pieniądze nie biorą udziału._
-{"ts": "2026-11-21T23:47:04Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
-{"ts": "2026-11-21T23:47:04Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
-{"ts": "2026-11-21T23:47:04Z", "action": "BUY", "ticker": "TECS", "reason": "momentum: 5d +43.9%, 20d +67.2%, 60d +78.1%, ranking 1/6, dźwignia 1.0x", "margin_usd": 74.22, "portfolio": "C"}
+{"ts": "2026-11-21T23:56:06Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
+{"ts": "2026-11-21T23:56:06Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
+{"ts": "2026-11-21T23:56:06Z", "action": "BUY", "ticker": "TECS", "reason": "momentum: 5d +43.9%, 20d +67.2%, 60d +78.1%, ranking 1/6, dźwignia 1.0x", "margin_usd": 74.22, "portfolio": "C"}
+{"ts": "2026-11-21T23:56:06Z", "action": "WAIT", "ticker": null, "reason": "agent AI: błąd API Gemini: HTTP Error 429: Too Many Requests", "portfolio": "D"}
