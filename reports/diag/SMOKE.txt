@@ -1,20 +1,21 @@
 START: 300 zł = 74.22 USD
-OK 2026-11-21T23:59:53Z | transakcje: 3 | decyzje (bez HOLD): 6 | błędy: 0
+OK 2026-11-22T12:27:33Z | transakcje: 3 | decyzje (bez HOLD): 7 | błędy: 0
 EXIT=0
-# gielda-max — stan na 2026-11-21T23:59:53Z (18:59 NY)
+# gielda-max — stan na 2026-11-22T12:27:33Z (07:27 NY)
 
 | Portfel | Wartość | Dziś | Od startu | Max spadek | Transakcje zamkn. | Trafność | Koszty | Status |
 |---|---|---|---|---|---|---|---|---|
 | A — V6 spółki momentum 60d, top2, 2x (zwycięzca reguły, zamrożony) | 300.00 zł | +0.0% | +0.0% | 0.0% | 0 | - | 0.00 zł | ACTIVE |
 | B — V4 lewarowane ETF + filtr rynku, 2x (sterowany przez AI) | 300.00 zł | +0.0% | +0.0% | 0.0% | 0 | - | 0.00 zł | ACTIVE |
 | C — C1 odwrotne ETF na spadki (QQQ pod średnią 200d), 1x (zwycięzca rundy 2, zamrożony) | 298.05 zł | -0.6% | -0.6% | -0.6% | 0 | - | 1.50 zł | ACTIVE |
-| D — Agent AI (Gemini) — sam wybiera, kupuje i sprzedaje, dźwignia do 3x | 299.25 zł | -0.2% | -0.2% | -0.2% | 0 | - | 0.30 zł | ACTIVE |
+| D — Agent AI (Gemini) — sam wybiera, kupuje i sprzedaje, dźwignia do 3x | 299.29 zł | -0.2% | -0.2% | -0.2% | 0 | - | 0.28 zł | ACTIVE |
+| E — Agent AI x2: 3.5-flash (myśli dłużej) proponuje, 3-flash recenzuje, dźwignia do 3x | 299.63 zł | -0.1% | -0.1% | -0.1% | 0 | - | 0.15 zł | ACTIVE |
 | BENCH — Benchmark: kup i trzymaj QQQ | 298.35 zł | -0.5% | -0.5% | -0.5% | 0 | - | 0.00 zł | ACTIVE |
 
 ## Otwarte pozycje
 - **C**: TECS — wejście 103.91 USD, teraz 103.75 USD (-0.1% ceny, ×1 dźwignia → ok. -0.1% kapitału pozycji)
-- **D**: SOXS — wejście 83.37 USD, teraz 83.25 USD (-0.1% ceny, ×1 dźwignia → ok. -0.1% kapitału pozycji)
 - **D**: SQQQ — wejście 57.68 USD, teraz 57.59 USD (-0.1% ceny, ×1 dźwignia → ok. -0.1% kapitału pozycji)
+- **E**: SQQQ — wejście 57.68 USD, teraz 57.59 USD (-0.1% ceny, ×1 dźwignia → ok. -0.1% kapitału pozycji)
 - **BENCH**: QQQ — wejście 610.35 USD, teraz 610.04 USD (-0.0% ceny, ×1 dźwignia → ok. -0.0% kapitału pozycji)
 
 ## Ranking skanera (top 5)
@@ -27,9 +28,10 @@ EXIT=0
 Raporty dzienne: `reports/daily/` · Dziennik decyzji: `data/decisions.jsonl` · Transakcje: `data/trades.csv`
 
 _Wyniki wirtualne (paper trading) — żadne prawdziwe pieniądze nie biorą udziału._
-{"ts": "2026-11-21T23:59:53Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
-{"ts": "2026-11-21T23:59:53Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
-{"ts": "2026-11-21T23:59:53Z", "action": "BUY", "ticker": "TECS", "reason": "momentum: 5d +43.9%, 20d +67.2%, 60d +78.1%, ranking 1/6, dźwignia 1.0x", "margin_usd": 74.22, "portfolio": "C"}
-{"ts": "2026-11-21T23:59:53Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.6-flash): Rynek technologiczny znajduje się w głębokiej wyprzedaży, a QQQ przełamuje wsparcia poniżej 50, 100 i 200-dniowej średniej. Wykorzystujemy silny trend spadkowy na spółkach technologicznych i półprzewodnikach poprzez zakup odwrotnych ETF-ów.", "portfolio": "D"}
-{"ts": "2026-11-21T23:59:53Z", "action": "BUY", "ticker": "SOXS", "reason": "AI: Silny pęd wzrostowy ETF-a odwrotnego na półprzewodniki w obliczu krachu sektora. (waga 50%, dźwignia 1x)", "margin_usd": 37.11, "model": "models/gemini-3.6-flash", "portfolio": "D"}
-{"ts": "2026-11-21T23:59:53Z", "action": "BUY", "ticker": "SQQQ", "reason": "AI: Słabość QQQ poniżej kluczowych średnich kroczących sprzyja pozycji niedźwiedziej. (waga 50%, dźwignia 1x)", "margin_usd": 37.06, "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-22T12:27:33Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
+{"ts": "2026-11-22T12:27:33Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
+{"ts": "2026-11-22T12:27:33Z", "action": "BUY", "ticker": "TECS", "reason": "momentum: 5d +43.9%, 20d +67.2%, 60d +78.1%, ranking 1/6, dźwignia 1.0x", "margin_usd": 74.22, "portfolio": "C"}
+{"ts": "2026-11-22T12:27:33Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.6-flash): Rynek technologiczny znajduje się w głębokiej korekcie, a indykatory techniczne QQQ sygnalizują dominację podaży. Kontynuujemy grę pod dalsze spadki sektora technologicznego przy użyciu odwrotnego ETF.", "portfolio": "D"}
+{"ts": "2026-11-22T12:27:33Z", "action": "BUY", "ticker": "SQQQ", "reason": "AI: QQQ w silnym trendzie spadkowym poniżej SMA 50/100/200; SQQQ wykazuje silne momentum wzrostowe. (waga 95%, dźwignia 1x)", "margin_usd": 70.5, "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-22T12:27:33Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash + recenzent models/gemini-3-flash-preview): Rynek znajduje się w głębokiej korekcie/bessie z szeroką wyprzedażą sektora technologicznego i półprzewodników. Kontynuacja spadków indeksów faworyzuj | Recenzja: Zmniejszyłem wagę pozycji do 0.50, ponieważ rynek jest skrajnie wyprzedany (QQQ -10% w 5 dni), co zwiększa ryzyko gwałtownej korekty wzro", "portfolio": "E"}
+{"ts": "2026-11-22T12:27:33Z", "action": "BUY", "ticker": "SQQQ", "reason": "AI: Rynek jest w silnym trendzie spadkowym (QQQ poniżej SMA50/100/200), co uzasadnia pozycję krótką. Jednak waga 0.77 jest zbyt wysoka przy ATR 7.3% i ryzyku technicznego odbicia po gwałtownych spadkach. (waga 50%, dźwignia 1x)", "margin_usd": 37.11, "model": "models/gemini-3.5-flash + recenzent models/gemini-3-flash-preview", "portfolio": "E"}
