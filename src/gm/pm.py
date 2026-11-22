@@ -71,7 +71,7 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
             log("CLOSE", t, f"filtr reżimu ({cfg.get('regime_mode', 'bull')}): zmiana trendu {ctx.get('benchmark', 'QQQ')} vs średnia {cfg.get('regime_sma', 200)}d",
                 pnl_usd=round(tr["pnl_usd"], 2))
             continue
-        weak = (cfg.get("agent") != "llm" and (r is None or r > cfg["keep_rank"])
+        weak = (not str(cfg.get("agent", "")).startswith("llm") and (r is None or r > cfg["keep_rank"])
                 and held >= cfg.get("min_hold_days", 1))
         if weak and ctx["entry_window"] and broker.trades_today(pf, day) < cfg["max_trades_per_day"]:
             tr = broker.close_position(pf, t, px, cfg, ts, day, "SŁABNĄCE MOMENTUM")
@@ -95,7 +95,7 @@ def decide_and_execute(pf: dict, cfg: dict, ranked: list, prices: dict, ctx: dic
     if pf["status"] != "ACTIVE" or not ctx["trading_enabled"]:
         log("WAIT", None, f"handel wstrzymany (status={pf['status']}, wyłącznik={'ON' if ctx['trading_enabled'] else 'OFF'})")
         return decisions, trades
-    if cfg.get("agent") == "llm":
+    if str(cfg.get("agent", "")).startswith("llm"):
         if ctx.get("llm_window") and ctx.get("llm"):
             _llm_step(pf, cfg, prices, ctx, eq, log, trades)
         return decisions, trades

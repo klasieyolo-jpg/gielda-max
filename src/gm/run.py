@@ -138,7 +138,7 @@ def tick(now_utc: datetime | None = None, fetch=None) -> int:
         print(f"START: {cfg_all['start_capital_pln']} zł = {st['portfolios']['A']['cash_usd']:.2f} USD")
 
     # Agent AI (portfel D): metryki wszystkich instrumentów + newsy, raz na cykl
-    if any(c.get("agent") == "llm" for c in (st or {}).get("params", cfg_all["portfolios"]).values()):
+    if any(str(c.get("agent", "")).startswith("llm") for c in (st or {}).get("params", cfg_all["portfolios"]).values()):
         ny_now = now_utc.astimezone(NY).time()
         ctx["llm_window"] = ctx["market_open"] and (smoke or dtime(10, 0) <= ny_now <= dtime(15, 50))
         if ctx["llm_window"]:

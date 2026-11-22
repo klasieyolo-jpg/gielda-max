@@ -218,5 +218,19 @@ class TestLLMAgent(unittest.TestCase):
         self.assertIn("GEMINI_API_KEY", dec[-1]["reason"])
 
 
+class TestReviewer(unittest.TestCase):
+    def test_reviewer_can_only_reduce(self):
+        from gm.llm import reconcile
+        prop = {"actions": [{"action": "BUY", "ticker": "TSLA", "weight": 0.5, "leverage": 2}], "view": "v"}
+        rev = {"actions": [{"action": "BUY", "ticker": "TSLA", "weight": 0.9, "leverage": 3},
+                           {"action": "BUY", "ticker": "MSTR", "weight": 0.5, "leverage": 1},
+                           {"action": "CLOSE", "ticker": "NVDA"}], "critique": "c"}
+        out = reconcile(prop, rev, {"NVDA"})
+        buys = [a for a in out["actions"] if a["action"] == "BUY"]
+        self.assertEqual(len(buys), 1)
+        self.assertEqual((buys[0]["weight"], buys[0]["leverage"]), (0.5, 2.0))
+        self.assertTrue(any(a["action"] == "CLOSE" and a["ticker"] == "NVDA" for a in out["actions"]))
+
+
 if __name__ == "__main__":
     unittest.main()
