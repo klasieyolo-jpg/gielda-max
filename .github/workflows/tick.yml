@@ -1,9 +1,7 @@
 name: tick
 # Cykl agentów co 30 min w czasie sesji USA (cron w UTC; kod sam sprawdza godzinę w Nowym Jorku).
 on:
-  schedule:
-    - cron: "5,35 13-21 * * 1-5"
-  workflow_dispatch:
+  workflow_dispatch:  # ręcznie; automatycznie działa workflow 'session'
 
 permissions:
   contents: write

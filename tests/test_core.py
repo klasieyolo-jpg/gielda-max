@@ -91,7 +91,7 @@ class FakeFetch:
     def fetch_daily(self, tickers, period="9mo"):
         return {t: self.d[t].copy() for t in tickers if t in self.d}
 
-    def fetch_intraday(self, tickers):
+    def fetch_intraday(self, tickers, interval="5m"):
         return {t: {"price": float(self.d[t]["Close"].iloc[-1]), "open": 0, "low": 0, "age_min": 3}
                 for t in tickers if t in self.d}
 
@@ -142,6 +142,19 @@ class TestTick(unittest.TestCase):
         self.assertTrue((self.tmp / "reports/LATEST.md").exists())
         # zamknięty rynek (sobota) -> nic
         self.assertEqual(self.run.tick(datetime(2026, 11, 28, 18, 0, tzinfo=timezone.utc), self.fetch), 0)
+
+    def test_risk_check_closes_on_crash(self):
+        self.assertEqual(self.run.tick(datetime(2026, 11, 23, 19, 30, tzinfo=timezone.utc), self.fetch), 0)
+        st = json.loads((self.tmp / "state/portfolios.json").read_text())
+        held = {t for k, pf in st["portfolios"].items() if k != "BENCH" for t in pf["positions"]}
+        self.assertTrue(held)
+        for t in held:  # krach -40%
+            self.fetch.d[t].iloc[-1, self.fetch.d[t].columns.get_loc("Close")] *= 0.6
+        n = self.run.risk_check(datetime(2026, 11, 23, 19, 32, tzinfo=timezone.utc), self.fetch)
+        self.assertGreaterEqual(n, 1)
+        st = json.loads((self.tmp / "state/portfolios.json").read_text())
+        left = {t for k, pf in st["portfolios"].items() if k != "BENCH" for t in pf["positions"]}
+        self.assertFalse(left & held)
 
 
 class TestBacktest(unittest.TestCase):

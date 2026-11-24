@@ -1,0 +1,59 @@
+name: session
+# Cała sesja w USA: kontrola ryzyka co ~90 s, cykl agentów (z AI) co 15 min, raport po zamknięciu.
+# Uruchamiane przez cron-job.org (workflow_dispatch) + zapasowy harmonogram GitHub.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "25,55 13-21 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gielda-max-state
+  cancel-in-progress: false
+
+jobs:
+  session:
+    runs-on: ubuntu-latest
+    timeout-minutes: 230
+    steps:
+      - name: Czy jest sesja (lub raport) w USA i czy repo jest publiczne?
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PRIV=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY" \
+                 | python3 -c 'import json,sys; print(json.load(sys.stdin).get("private", True))')
+          echo "repo private: $PRIV"
+          python3 - "$PRIV" <<'PY' >> "$GITHUB_OUTPUT"
+          import sys
+          from datetime import datetime, time
+          from zoneinfo import ZoneInfo
+          ny = datetime.now(ZoneInfo("America/New_York"))
+          ok = ny.weekday() < 5 and time(8, 50) <= ny.time() <= time(16, 50)
+          # długi proces tylko w repo publicznym (darmowe minuty); w prywatnym zjadłby limit
+          ok = ok and sys.argv[1] == "False"
+          print(f"run={'true' if ok else 'false'}")
+          PY
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalacja
+        if: steps.gate.outputs.run == 'true'
+        run: pip install -r requirements.txt
+      - name: Sesja agentów
+        if: steps.gate.outputs.run == 'true'
+        env:
+          PYTHONPATH: src
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          git config user.name "gielda-max-bot"
+          git config user.email "gielda-max-bot@users.noreply.github.com"
+          python -m gm.loop

@@ -4,7 +4,7 @@
 — system fizycznie nie może złożyć prawdziwego zlecenia.
 
 ## Jak to działa
-Co 30 min w czasie sesji w USA (ok. 15:30–22:00 czasu polskiego) GitHub Actions uruchamia cykl agentów:
+W czasie sesji w USA (ok. 15:30–22:00 czasu polskiego) działa proces `session` (GitHub Actions, start przez cron-job.org; tylko gdy repo jest publiczne): kontrola ryzyka (stop-lossy) co ~90 s, pełny cykl agentów z AI co 15 min, raport po zamknięciu:
 
 `DANE → SKANER → ANALITYK → POLECENIA → ZARZĄDZAJĄCY + RYZYKO → EGZEKUCJA (wirtualna) → DZIENNIK → RAPORT`
 

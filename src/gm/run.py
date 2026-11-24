@@ -202,5 +202,53 @@ def _record_errors(st, errors, ctx):
         save_json(p("state", "portfolios.json"), st)
 
 
+def risk_check(now_utc: datetime | None = None, fetch=None) -> int:
+    """Szybka kontrola ryzyka (bez AI, bez nowych wejść): stop-lossy, trailing, likwidacja depozytu.
+    Zwraca liczbę zamkniętych pozycji."""
+    if fetch is None:
+        from . import data as fetch  # noqa: PLW0127
+    now_utc = now_utc or datetime.now(timezone.utc)
+    cfg_all = load_json(p("config", "strategies.json"))
+    st = load_json(p("state", "portfolios.json"))
+    ctx = market_context(now_utc, cfg_all)
+    if st is None or not ctx["market_open"]:
+        return 0
+    held = sorted({t for k, pf in st["portfolios"].items() if k != "BENCH" for t in pf["positions"]})
+    if not held:
+        return 0
+    try:
+        q = fetch.fetch_intraday(held, interval="1m")
+    except Exception as e:  # noqa: BLE001
+        print(f"risk_check: brak danych ({e})")
+        return 0
+    max_age = cfg_all["schedule"]["max_data_age_minutes"]
+    prices = {t: v["price"] for t, v in q.items() if v["age_min"] <= max_age and v["price"] > 0}
+    trades, decisions = [], []
+    for k, pf in st["portfolios"].items():
+        if k == "BENCH":
+            continue
+        cfg = st["params"][k]
+        for t in list(pf["positions"]):
+            if t not in prices:
+                continue
+            pos = pf["positions"][t]
+            ex = pm.exit_check(pos, cfg, prices[t])
+            if ex:
+                tr = broker.close_position(pf, t, ex[0], cfg, ctx["ts"], ctx["day"], ex[1])
+                trades.append({**tr, "portfolio": k})
+                decisions.append({"ts": ctx["ts"], "action": "CLOSE", "ticker": t, "portfolio": k,
+                                  "reason": f"kontrola ryzyka (co ~2 min): {ex[1]} przy {ex[0]:.2f}",
+                                  "pnl_usd": round(tr["pnl_usd"], 2)})
+            else:
+                pos["peak"] = max(pos["peak"], prices[t])
+                pos["last_price"] = prices[t]
+    append_csv(p("data", "trades.csv"), trades, TRADE_FIELDS)
+    append_jsonl(p("data", "decisions.jsonl"), decisions)
+    save_json(p("state", "portfolios.json"), st)
+    if trades:
+        print(f"risk_check {ctx['ts']}: zamknięto {len(trades)} pozycji")
+    return len(trades)
+
+
 if __name__ == "__main__":
     sys.exit(tick())

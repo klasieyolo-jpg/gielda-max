@@ -43,16 +43,17 @@ def fetch_daily(tickers: list[str], period: str = "9mo") -> dict[str, pd.DataFra
     return _split(_download(tickers, period=period, interval="1d"), tickers)
 
 
-def fetch_intraday(tickers: list[str]) -> dict[str, dict]:
-    """Ostatnia cena 5-min + jej wiek w minutach + otwarcie/minimum dnia."""
-    df = _download(tickers, period="1d", interval="5m", prepost=False)
+def fetch_intraday(tickers: list[str], interval: str = "5m") -> dict[str, dict]:
+    """Ostatnia cena (świeca 1m/5m) + jej wiek w minutach + otwarcie/minimum dnia."""
+    bar_min = int(interval.rstrip("m"))
+    df = _download(tickers, period="1d", interval=interval, prepost=False)
     now = datetime.now(timezone.utc)
     out = {}
     for t, sub in _split(df, tickers).items():
         ts = sub.index[-1].to_pydatetime()
         if ts.tzinfo is None:
             ts = ts.replace(tzinfo=timezone.utc)
-        age = (now - ts).total_seconds() / 60 - 5
+        age = (now - ts).total_seconds() / 60 - bar_min
         out[t] = {
             "price": float(sub["Close"].iloc[-1]),
             "open": float(sub["Open"].iloc[0]),
