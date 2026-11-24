@@ -53,3 +53,11 @@
 {"ts": "2026-11-24T17:28:05Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 2, cena 60.74, szczyt 63.76", "portfolio": "E"}
 {"ts": "2026-11-24T17:28:05Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 48.59, szczyt 50.06", "portfolio": "E"}
 {"ts": "2026-11-24T17:28:05Z", "action": "WAIT", "ticker": null, "reason": "agent AI: błąd API Gemini: gemini-3.5-flash: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor y | gemini-3.6-flash: The read operation timed out", "portfolio": "E"}
+{"ts": "2026-11-24T17:37:31Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 3, cena 60.03, szczyt 63.76", "portfolio": "D"}
+{"ts": "2026-11-24T17:37:31Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 83.42, szczyt 86.35", "portfolio": "D"}
+{"ts": "2026-11-24T17:37:31Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-flash-lite-latest): Rynek technologiczny pozostaje pod presją poniżej średnich kroczących, mimo pojedynczych odbić. Utrzymujemy pozycje inverse.", "portfolio": "D"}
+{"ts": "2026-11-24T17:37:31Z", "action": "HOLD", "ticker": "TECS", "reason": "AI: Trzymamy pozycję na spadki technologiczne mimo wahań.", "model": "models/gemini-flash-lite-latest", "portfolio": "D"}
+{"ts": "2026-11-24T17:37:31Z", "action": "HOLD", "ticker": "SOXS", "reason": "AI: Kontynuacja pozycji inverse semiconductor, trend spadkowy trwa.", "model": "models/gemini-flash-lite-latest", "portfolio": "D"}
+{"ts": "2026-11-24T17:37:31Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 3, cena 60.03, szczyt 63.76", "portfolio": "E"}
+{"ts": "2026-11-24T17:37:31Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 48.33, szczyt 50.06", "portfolio": "E"}
+{"ts": "2026-11-24T17:37:31Z", "action": "WAIT", "ticker": null, "reason": "agent AI: błąd API Gemini: gemini-3.5-flash: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3.6-flash: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "portfolio": "E"}
