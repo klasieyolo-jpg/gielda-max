@@ -169,3 +169,9 @@
 {"ts": "2026-11-24T20:43:10Z", "action": "HOLD", "ticker": "TECS", "reason": "AI: QQQ i spółki technologiczne słabe, utrzymujemy pozycję odwrotną z dźwignią.", "model": "models/gemini-3.6-flash", "portfolio": "D"}
 {"ts": "2026-11-24T20:43:10Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 49.23, szczyt 50.06", "portfolio": "E"}
 {"ts": "2026-11-24T20:43:10Z", "action": "WAIT", "ticker": null, "reason": "agent AI: błąd API Gemini: gemini-3.5-flash: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor y | gemini-3.6-flash: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor y", "portfolio": "E"}
+{"ts": "2026-11-24T20:58:27Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
+{"ts": "2026-11-24T20:58:27Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
+{"ts": "2026-11-24T20:58:27Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 83.75, szczyt 85.30", "portfolio": "C"}
+{"ts": "2026-11-24T20:58:27Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 2, cena 60.96, szczyt 63.76", "portfolio": "D"}
+{"ts": "2026-11-24T20:58:27Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 83.75, szczyt 86.35", "portfolio": "D"}
+{"ts": "2026-11-24T20:58:27Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 48.66, szczyt 50.06", "portfolio": "E"}
