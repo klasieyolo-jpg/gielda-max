@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "started_at": "2026-11-24T14:31:00Z",
+  "usdpln_start": 4.062950134277344,
+  "params": {
+    "A": {
+      "top_n": 2,
+      "hard_stop": 0.2,
+      "trailing_stop": 0.25,
+      "keep_rank": 6,
+      "min_hold_days": 7,
+      "max_trades_per_day": 4,
+      "bankrupt_floor_pct": 0.1,
+      "fee_rate": 0.001,
+      "slippage": 0.0015,
+      "borrow_rate_annual": 0.08,
+      "margin_closeout_level": 0.5,
+      "universe": [
+        "NVDA",
+        "TSLA",
+        "AMD",
+        "PLTR",
+        "MSTR",
+        "COIN",
+        "SMCI",
+        "HOOD",
+        "MARA",
+        "RIOT",
+        "IONQ",
+        "RKLB",
+        "SOFI",
+        "AFRM",
+        "UPST",
+        "CVNA",
+        "APP"
+      ],
+      "score_weights": {
+        "ret5": 0,
+        "ret20": 0.3,
+        "ret60": 0.7
+      },
+      "regime_filter": true,
+      "regime_sma": 100,
+      "leverage": 2.0,
+      "name": "V6 spółki momentum 60d, top2, 2x (zwycięzca reguły, zamrożony)",
+      "frozen": true
+    },
+    "B": {
+      "top_n": 1,
+      "hard_stop": 0.25,
+      "trailing_stop": 0.3,
+      "keep_rank": 3,
+      "min_hold_days": 7,
+      "max_trades_per_day": 4,
+      "bankrupt_floor_pct": 0.1,
+      "fee_rate": 0.001,
+      "slippage": 0.0015,
+      "borrow_rate_annual": 0.08,
+      "margin_closeout_level": 0.5,
+      "universe": [
+        "TQQQ",
+        "SOXL",
+        "TECL",
+        "UPRO",
+        "TNA",
+        "LABU"
+      ],
+      "score_weights": {
+        "ret5": 0,
+        "ret20": 0.5,
+        "ret60": 0.5
+      },
+      "regime_filter": true,
+      "regime_sma": 200,
+      "leverage": 2.0,
+      "name": "V4 lewarowane ETF + filtr rynku, 2x (sterowany przez AI)",
+      "frozen": false
+    },
+    "C": {
+      "top_n": 1,
+      "hard_stop": 0.25,
+      "trailing_stop": 0.3,
+      "keep_rank": 3,
+      "min_hold_days": 7,
+      "max_trades_per_day": 4,
+      "bankrupt_floor_pct": 0.1,
+      "fee_rate": 0.005,
+      "slippage": 0.0015,
+      "borrow_rate_annual": 0.0,
+      "universe": [
+        "SQQQ",
+        "SOXS",
+        "SPXU",
+        "TZA",
+        "LABD",
+        "TECS"
+      ],
+      "score_weights": {
+        "ret5": 0,
+        "ret20": 0.5,
+        "ret60": 0.5
+      },
+      "regime_filter": true,
+      "regime_mode": "bear",
+      "regime_sma": 200,
+      "leverage": 1.0,
+      "name": "C1 odwrotne ETF na spadki (QQQ pod średnią 200d), 1x (zwycięzca rundy 2, zamrożony)",
+      "frozen": true
+    },
+    "D": {
+      "name": "Agent AI (Gemini) — sam wybiera, kupuje i sprzedaje, dźwignia do 3x",
+      "agent": "llm",
+      "frozen": false,
+      "leverage": 1.0,
+      "max_leverage": 3,
+      "top_n": 3,
+      "hard_stop": 0.15,
+      "trailing_stop": 0.25,
+      "keep_rank": 99,
+      "min_hold_days": 1,
+      "max_trades_per_day": 6,
+      "fee_rate": 0.001,
+      "slippage": 0.0015,
+      "borrow_rate_annual": 0.08,
+      "margin_closeout_level": 0.5,
+      "bankrupt_floor_pct": 0.1,
+      "llm_model": "gemini-3.6-flash",
+      "fallback_models": [
+        "gemini-3-flash-preview",
+        "gemini-flash-lite-latest"
+      ]
+    },
+    "E": {
+      "name": "Agent AI x2: 3.5-flash (myśli dłużej) proponuje, 3-flash recenzuje, dźwignia do 3x",
+      "agent": "llm2",
+      "frozen": false,
+      "leverage": 1.0,
+      "max_leverage": 3,
+      "top_n": 3,
+      "hard_stop": 0.15,
+      "trailing_stop": 0.25,
+      "keep_rank": 99,
+      "min_hold_days": 1,
+      "max_trades_per_day": 6,
+      "fee_rate": 0.001,
+      "slippage": 0.0015,
+      "borrow_rate_annual": 0.08,
+      "margin_closeout_level": 0.5,
+      "bankrupt_floor_pct": 0.1,
+      "fallback_models": [
+        "gemini-3.6-flash"
+      ],
+      "proposer_model": "gemini-3.5-flash",
+      "reviewer_model": "gemini-3-flash-preview"
+    },
+    "BENCH": {
+      "name": "Benchmark: kup i trzymaj QQQ",
+      "frozen": true,
+      "leverage": 1.0,
+      "slippage": 0.0005,
+      "fee_rate": 0.005
+    }
+  },
+  "portfolios": {
+    "A": {
+      "cash_usd": 73.83797243018822,
+      "start_equity_usd": 73.83797243018822,
+      "positions": {},
+      "status": "ACTIVE",
+      "trades_day": {
+        "date": null,
+        "n": 0
+      },
+      "last_interest_date": null
+    },
+    "B": {
+      "cash_usd": 73.83797243018822,
+      "start_equity_usd": 73.83797243018822,
+      "positions": {},
+      "status": "ACTIVE",
+      "trades_day": {
+        "date": null,
+        "n": 0
+      },
+      "last_interest_date": null
+    },
+    "C": {
+      "cash_usd": 73.83797243018822,
+      "start_equity_usd": 73.83797243018822,
+      "positions": {},
+      "status": "ACTIVE",
+      "trades_day": {
+        "date": null,
+        "n": 0
+      },
+      "last_interest_date": null
+    },
+    "D": {
+      "cash_usd": 73.83797243018822,
+      "start_equity_usd": 73.83797243018822,
+      "positions": {},
+      "status": "ACTIVE",
+      "trades_day": {
+        "date": null,
+        "n": 0
+      },
+      "last_interest_date": null
+    },
+    "E": {
+      "cash_usd": 73.83797243018822,
+      "start_equity_usd": 73.83797243018822,
+      "positions": {},
+      "status": "ACTIVE",
+      "trades_day": {
+        "date": null,
+        "n": 0
+      },
+      "last_interest_date": null
+    },
+    "BENCH": {
+      "cash_usd": 0.0,
+      "start_equity_usd": 73.83797243018822,
+      "positions": {
+        "QQQ": {
+          "qty": 0.1146569835820884,
+          "entry": 640.7702372131347,
+          "peak": 640.7702372131347,
+          "borrowed": 0.0,
+          "leverage": 1.0,
+          "opened": "2026-11-24T14:31:00Z",
+          "opened_day": "2026-11-24",
+          "last_price": 640.4500122070312
+        }
+      },
+      "status": "ACTIVE",
+      "trades_day": {
+        "date": "2026-11-24",
+        "n": 1
+      },
+      "last_interest_date": null
+    }
+  },
+  "processed_commands": [],
+  "last_report_day": null,
+  "errors": [],
+  "last_tick": "2026-11-24T14:31:00Z",
+  "last_ranking": [
+    {
+      "ticker": "TECS",
+      "score": 0.235,
+      "ret5": 0.0065,
+      "ret20": 0.4635
+    },
+    {
+      "ticker": "APP",
+      "score": 0.1778,
+      "ret5": -0.0645,
+      "ret20": 0.42
+    },
+    {
+      "ticker": "SQQQ",
+      "score": 0.164,
+      "ret5": 0.0249,
+      "ret20": 0.303
+    },
+    {
+      "ticker": "SPXU",
+      "score": 0.1316,
+      "ret5": 0.0548,
+      "ret20": 0.2084
+    },
+    {
+      "ticker": "RIOT",
+      "score": 0.1181,
+      "ret5": -0.0094,
+      "ret20": 0.2456
+    },
+    {
+      "ticker": "TZA",
+      "score": 0.0957,
+      "ret5": 0.0395,
+      "ret20": 0.1519
+    }
+  ]
+}
