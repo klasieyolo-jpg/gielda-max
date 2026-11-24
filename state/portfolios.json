@@ -207,7 +207,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 59.70000076293945
+          "last_price": 60.40999984741211
         },
         "TECS": {
           "qty": 0.3612753498097775,
@@ -217,7 +217,7 @@
           "leverage": 3.0,
           "opened": "2026-11-24T16:39:05Z",
           "opened_day": "2026-11-24",
-          "last_price": 83.54000091552734
+          "last_price": 83.61499786376953
         }
       },
       "status": "ACTIVE",
@@ -228,19 +228,9 @@
       "last_interest_date": "2026-11-24"
     },
     "E": {
-      "cash_usd": 14.79662464244742,
+      "cash_usd": 39.55208479856728,
       "start_equity_usd": 73.83797243018822,
       "positions": {
-        "SOXS": {
-          "qty": 0.4108171934960556,
-          "entry": 62.844125000000005,
-          "peak": 63.755001068115234,
-          "borrowed": 0.0,
-          "leverage": 1.0,
-          "opened": "2026-11-24T15:50:31Z",
-          "opened_day": "2026-11-24",
-          "last_price": 59.70000076293945
-        },
         "SQQQ": {
           "qty": 0.667375802351315,
           "entry": 49.6944289302826,
@@ -249,13 +239,13 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 48.34000015258789
+          "last_price": 48.7599983215332
         }
       },
       "status": "ACTIVE",
       "trades_day": {
         "date": "2026-11-24",
-        "n": 2
+        "n": 3
       },
       "last_interest_date": "2026-11-24"
     },
@@ -271,7 +261,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T14:31:00Z",
           "opened_day": "2026-11-24",
-          "last_price": 639.4719848632812
+          "last_price": 637.7150268554688
         }
       },
       "status": "ACTIVE",
@@ -285,49 +275,49 @@
   "processed_commands": [],
   "last_report_day": null,
   "errors": [],
-  "last_tick": "2026-11-24T18:39:50Z",
+  "last_tick": "2026-11-24T18:55:15Z",
   "last_ranking": [
     {
       "ticker": "TECS",
-      "score": 0.2573,
-      "ret5": 0.0247,
-      "ret20": 0.4899
-    },
-    {
-      "ticker": "APP",
-      "score": 0.2125,
-      "ret5": -0.0369,
-      "ret20": 0.4619
+      "score": 0.2584,
+      "ret5": 0.0256,
+      "ret20": 0.4913
     },
     {
       "ticker": "SOXS",
-      "score": 0.2103,
-      "ret5": 0.0158,
-      "ret20": 0.4047
+      "score": 0.2247,
+      "ret5": 0.0279,
+      "ret20": 0.4214
+    },
+    {
+      "ticker": "APP",
+      "score": 0.2118,
+      "ret5": -0.0375,
+      "ret20": 0.461
     },
     {
       "ticker": "SQQQ",
-      "score": 0.1693,
-      "ret5": 0.0296,
-      "ret20": 0.309
+      "score": 0.1794,
+      "ret5": 0.0386,
+      "ret20": 0.3203
     },
     {
       "ticker": "SPXU",
-      "score": 0.1092,
-      "ret5": 0.0339,
-      "ret20": 0.1845
+      "score": 0.1168,
+      "ret5": 0.041,
+      "ret20": 0.1925
     },
     {
       "ticker": "RIOT",
-      "score": 0.0701,
-      "ret5": -0.0519,
-      "ret20": 0.1921
+      "score": 0.0814,
+      "ret5": -0.0419,
+      "ret20": 0.2046
     },
     {
       "ticker": "TZA",
-      "score": 0.0545,
-      "ret5": 0.0004,
-      "ret20": 0.1086
+      "score": 0.0578,
+      "ret5": 0.0036,
+      "ret20": 0.1121
     }
   ]
 }
