@@ -140,7 +140,11 @@ def tick(now_utc: datetime | None = None, fetch=None) -> int:
     # Agent AI (portfel D): metryki wszystkich instrumentów + newsy, raz na cykl
     if any(str(c.get("agent", "")).startswith("llm") for c in (st or {}).get("params", cfg_all["portfolios"]).values()):
         ny_now = now_utc.astimezone(NY).time()
-        ctx["llm_window"] = ctx["market_open"] and (smoke or dtime(10, 0) <= ny_now <= dtime(15, 50))
+        last = (st or {}).get("last_llm_ts")
+        gap_ok = smoke or not last or (now_utc - datetime.fromisoformat(last.replace("Z", "+00:00"))).total_seconds() >= 28 * 60
+        ctx["llm_window"] = ctx["market_open"] and gap_ok and (smoke or dtime(10, 0) <= ny_now <= dtime(15, 50))
+        if ctx["llm_window"] and st is not None:
+            st["last_llm_ts"] = ctx["ts"]  # AI co ~30 min (darmowe dzienne limity Gemini)
         if ctx["llm_window"]:
             metrics_all = {t: m for t in live if (m := signals.analyze(live[t], cfg_all["filters"],
                                                                          {"ret5": 1, "ret20": 1, "ret60": 1}))}
