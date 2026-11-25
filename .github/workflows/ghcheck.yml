@@ -26,7 +26,7 @@ jobs:
         env:
           PYTHONPATH: src
           GITHUB_TOKEN: ${{ github.token }}
-        run: python -m gm.ghcheck > reports/diag/GHMODELS.txt 2>&1; cat reports/diag/GHMODELS.txt
+        run: python -m gm.ghcheck 2>&1 | tee reports/diag/GHMODELS.txt || true
       - name: Zapis wyniku
         run: |
           git config user.name "gielda-max-bot"
