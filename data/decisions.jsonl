@@ -221,3 +221,9 @@
 {"ts": "2026-11-25T16:18:16Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 75.16, szczyt 75.28", "portfolio": "D"}
 {"ts": "2026-11-25T16:18:16Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 97.19, szczyt 97.29", "portfolio": "D"}
 {"ts": "2026-11-25T16:18:16Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 3, cena 55.28, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-25T16:33:21Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 96.68, szczyt 97.29", "portfolio": "C"}
+{"ts": "2026-11-25T16:33:21Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 74.73, szczyt 75.28", "portfolio": "D"}
+{"ts": "2026-11-25T16:33:21Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 96.68, szczyt 97.29", "portfolio": "D"}
+{"ts": "2026-11-25T16:33:21Z", "action": "WAIT", "ticker": null, "reason": "agent AI: błąd API Gemini: gemini-3.6-flash: The read operation timed out | gemini-3-flash-preview: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3.1-flash-lite: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "portfolio": "D"}
+{"ts": "2026-11-25T16:33:21Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 3, cena 54.89, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-25T16:33:21Z", "action": "WAIT", "ticker": null, "reason": "agent AI: błąd API Gemini: gemini-flash-lite-latest: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3.5-flash-lite: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later. | gemini-3.1-flash-lite-preview: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.", "portfolio": "E"}
