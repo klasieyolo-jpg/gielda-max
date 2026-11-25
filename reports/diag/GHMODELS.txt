@@ -1,3 +1,6 @@
+  HTTP 200 https://models.github.ai/catalog/models | OK 
 KATALOG BŁĄD JSONDecodeError('Expecting value: line 1 column 1 (char 0)') 
+  HTTP 200 https://models.github.ai/inference/chat/completions | OK 
 FAIL openai/gpt-4.1-mini JSONDecodeError('Expecting value: line 1 column 1 (char 0)') 
+  HTTP 200 https://models.github.ai/inference/chat/completions | OK 
 FAIL openai/gpt-4o-mini JSONDecodeError('Expecting value: line 1 column 1 (char 0)') 
