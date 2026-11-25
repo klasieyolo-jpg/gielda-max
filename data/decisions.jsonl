@@ -204,3 +204,7 @@
 {"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 3, cena 54.82, szczyt 55.30", "portfolio": "E"}
 {"ts": "2026-11-25T15:32:34Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest): Rynek technologiczny oraz spółki z sektora AI/półprzewodników znajdują się pod silną presją podaży, a QQQ przełamuje kolejne wsparcia poniżej średnich | Recenzja: Odrzucono zakup SOXS ze względu na brak wolnej gotówki (tylko 39.55 USD przy kapitału 76.14 USD) oraz ekstremalną zmienność tego instrume", "portfolio": "E"}
 {"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Trend spadkowy na QQQ jest silny, utrzymujemy zyskowną pozycję zgodnie z rynkiem.", "model": "models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
+{"ts": "2026-11-25T15:47:53Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 96.89, szczyt 97.13", "portfolio": "C"}
+{"ts": "2026-11-25T15:47:53Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 74.77, szczyt 75.01", "portfolio": "D"}
+{"ts": "2026-11-25T15:47:53Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 96.89, szczyt 97.13", "portfolio": "D"}
+{"ts": "2026-11-25T15:47:53Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 3, cena 55.11, szczyt 55.30", "portfolio": "E"}
