@@ -197,7 +197,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T19:11:06Z",
           "opened_day": "2026-11-24",
-          "last_price": 96.8895034790039
+          "last_price": 96.17680358886719
         }
       },
       "status": "ACTIVE",
@@ -219,7 +219,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 74.7699966430664
+          "last_price": 74.72000122070312
         },
         "TECS": {
           "qty": 0.3612753498097775,
@@ -229,7 +229,7 @@
           "leverage": 3.0,
           "opened": "2026-11-24T16:39:05Z",
           "opened_day": "2026-11-24",
-          "last_price": 96.8895034790039
+          "last_price": 96.17680358886719
         }
       },
       "status": "ACTIVE",
@@ -251,7 +251,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 55.11289978027344
+          "last_price": 55.150001525878906
         }
       },
       "status": "ACTIVE",
@@ -273,7 +273,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T14:31:00Z",
           "opened_day": "2026-11-24",
-          "last_price": 609.9249877929688
+          "last_price": 609.739990234375
         }
       },
       "status": "ACTIVE",
@@ -287,44 +287,44 @@
   "processed_commands": [],
   "last_report_day": "2026-11-24",
   "errors": [],
-  "last_tick": "2026-11-25T15:47:53Z",
+  "last_tick": "2026-11-25T16:02:58Z",
   "last_ranking": [
     {
       "ticker": "SOXS",
-      "score": 0.5799,
-      "ret5": 0.2803,
-      "ret20": 0.8796
+      "score": 0.5789,
+      "ret5": 0.2795,
+      "ret20": 0.8783
     },
     {
       "ticker": "TECS",
-      "score": 0.4802,
-      "ret5": 0.2005,
-      "ret20": 0.76
+      "score": 0.4694,
+      "ret5": 0.1916,
+      "ret20": 0.7471
     },
     {
       "ticker": "SQQQ",
-      "score": 0.3541,
-      "ret5": 0.1891,
-      "ret20": 0.5191
+      "score": 0.355,
+      "ret5": 0.1899,
+      "ret20": 0.5201
     },
     {
       "ticker": "SPXU",
-      "score": 0.2086,
-      "ret5": 0.115,
-      "ret20": 0.3021
+      "score": 0.2072,
+      "ret5": 0.1137,
+      "ret20": 0.3006
     },
     {
       "ticker": "APP",
-      "score": 0.1503,
-      "ret5": -0.0811,
-      "ret20": 0.3817
+      "score": 0.1446,
+      "ret5": -0.0856,
+      "ret20": 0.3749
     },
     {
       "ticker": "TZA",
-      "score": 0.1347,
-      "ret5": 0.0764,
-      "ret20": 0.1931
+      "score": 0.1362,
+      "ret5": 0.0778,
+      "ret20": 0.1946
     }
   ],
-  "last_llm_ts": "2026-11-25T15:32:34Z"
+  "last_llm_ts": "2026-11-25T16:02:58Z"
 }
