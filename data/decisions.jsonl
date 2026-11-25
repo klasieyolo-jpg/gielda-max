@@ -298,3 +298,10 @@
 {"ts": "2026-11-25T19:16:36Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest): Rynek technologiczny pozostaje w silnym trendzie spadkowym (QQQ poniżej SMA 50, 100 i 200), co sprzyja utrzymywaniu i dodawaniu pozycji odwrotnych (in | Recenzja: Zatwierdziłem propozycję agenta, uzupełniając brakującą wagę dla utrzymywanej pozycji SQQQ, aby odzwierciedlić faktyczne zaangażowanie ka", "portfolio": "E"}
 {"ts": "2026-11-25T19:16:36Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Zatwierdzam utrzymanie pozycji short na słabym rynku QQQ.", "model": "models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
 {"ts": "2026-11-25T19:16:36Z", "action": "BUY", "ticker": "SOXS", "reason": "AI: Zatwierdzam wejście w SOXS zgodnie z trendem wyprzedaży sektorowej. (waga 50%, dźwignia 1x)", "margin_usd": 36.37, "model": "models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
+{"ts": "2026-11-25T19:31:52Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
+{"ts": "2026-11-25T19:31:52Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
+{"ts": "2026-11-25T19:31:52Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 86.30, szczyt 97.29", "portfolio": "C"}
+{"ts": "2026-11-25T19:31:52Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 62.81, szczyt 75.72", "portfolio": "D"}
+{"ts": "2026-11-25T19:31:52Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 86.30, szczyt 97.29", "portfolio": "D"}
+{"ts": "2026-11-25T19:31:52Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 49.46, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-25T19:31:52Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 62.81, szczyt 64.36", "portfolio": "E"}
