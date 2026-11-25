@@ -175,3 +175,7 @@
 {"ts": "2026-11-24T20:58:27Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 2, cena 60.96, szczyt 63.76", "portfolio": "D"}
 {"ts": "2026-11-24T20:58:27Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 83.75, szczyt 86.35", "portfolio": "D"}
 {"ts": "2026-11-24T20:58:27Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 48.66, szczyt 50.06", "portfolio": "E"}
+{"ts": "2026-11-25T14:31:00Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 93.86, szczyt 93.86", "portfolio": "C"}
+{"ts": "2026-11-25T14:31:00Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 72.85, szczyt 72.85", "portfolio": "D"}
+{"ts": "2026-11-25T14:31:00Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 93.86, szczyt 93.86", "portfolio": "D"}
+{"ts": "2026-11-25T14:31:00Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 3, cena 53.62, szczyt 53.62", "portfolio": "E"}

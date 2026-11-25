@@ -192,12 +192,12 @@
         "TECS": {
           "qty": 0.8708303218382537,
           "entry": 84.36635786056519,
-          "peak": 85.30000305175781,
+          "peak": 93.86000061035156,
           "borrowed": 0.0,
           "leverage": 1.0,
           "opened": "2026-11-24T19:11:06Z",
           "opened_day": "2026-11-24",
-          "last_price": 83.95999908447266
+          "last_price": 93.86000061035156
         }
       },
       "status": "ACTIVE",
@@ -208,28 +208,28 @@
       "last_interest_date": null
     },
     "D": {
-      "cash_usd": 0.6457778293355307,
+      "cash_usd": 0.641219526527383,
       "start_equity_usd": 73.83797243018822,
       "positions": {
         "SOXS": {
           "qty": 0.9976988984904208,
           "entry": 62.844125000000005,
-          "peak": 63.755001068115234,
+          "peak": 72.84719848632812,
           "borrowed": 0.0,
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 60.920101165771484
+          "last_price": 72.84719848632812
         },
         "TECS": {
           "qty": 0.3612753498097775,
           "entry": 86.34933122253419,
-          "peak": 86.34933122253419,
+          "peak": 93.86000061035156,
           "borrowed": 20.797256562174255,
           "leverage": 3.0,
           "opened": "2026-11-24T16:39:05Z",
           "opened_day": "2026-11-24",
-          "last_price": 83.95999908447266
+          "last_price": 93.86000061035156
         }
       },
       "status": "ACTIVE",
@@ -237,7 +237,7 @@
         "date": "2026-11-24",
         "n": 2
       },
-      "last_interest_date": "2026-11-24"
+      "last_interest_date": "2026-11-25"
     },
     "E": {
       "cash_usd": 39.55208479856728,
@@ -246,12 +246,12 @@
         "SQQQ": {
           "qty": 0.667375802351315,
           "entry": 49.6944289302826,
-          "peak": 50.064998626708984,
+          "peak": 53.62419891357422,
           "borrowed": 0.0,
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 48.70320129394531
+          "last_price": 53.62419891357422
         }
       },
       "status": "ACTIVE",
@@ -259,7 +259,7 @@
         "date": "2026-11-24",
         "n": 3
       },
-      "last_interest_date": "2026-11-24"
+      "last_interest_date": "2026-11-25"
     },
     "BENCH": {
       "cash_usd": 0.0,
@@ -273,7 +273,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T14:31:00Z",
           "opened_day": "2026-11-24",
-          "last_price": 637.6900024414062
+          "last_price": 616.489990234375
         }
       },
       "status": "ACTIVE",
@@ -287,49 +287,43 @@
   "processed_commands": [],
   "last_report_day": "2026-11-24",
   "errors": [],
-  "last_tick": "2026-11-24T21:00:00Z",
+  "last_tick": "2026-11-25T14:31:00Z",
   "last_ranking": [
     {
-      "ticker": "TECS",
-      "score": 0.2636,
-      "ret5": 0.0298,
-      "ret20": 0.4974
-    },
-    {
       "ticker": "SOXS",
-      "score": 0.235,
-      "ret5": 0.0366,
-      "ret20": 0.4334
+      "score": 0.5393,
+      "ret5": 0.2474,
+      "ret20": 0.8313
     },
     {
-      "ticker": "APP",
-      "score": 0.2017,
-      "ret5": -0.0454,
-      "ret20": 0.4489
+      "ticker": "TECS",
+      "score": 0.434,
+      "ret5": 0.1629,
+      "ret20": 0.705
     },
     {
       "ticker": "SQQQ",
-      "score": 0.1781,
-      "ret5": 0.0373,
-      "ret20": 0.3188
+      "score": 0.3175,
+      "ret5": 0.1569,
+      "ret20": 0.4781
     },
     {
       "ticker": "SPXU",
-      "score": 0.1126,
-      "ret5": 0.0372,
-      "ret20": 0.1881
+      "score": 0.1885,
+      "ret5": 0.0965,
+      "ret20": 0.2805
     },
     {
-      "ticker": "RIOT",
-      "score": 0.08,
-      "ret5": -0.0431,
-      "ret20": 0.2032
+      "ticker": "APP",
+      "score": 0.1817,
+      "ret5": -0.056,
+      "ret20": 0.4194
     },
     {
       "ticker": "TZA",
-      "score": 0.0613,
-      "ret5": 0.0068,
-      "ret20": 0.1157
+      "score": 0.1233,
+      "ret5": 0.0656,
+      "ret20": 0.1811
     }
   ]
 }
