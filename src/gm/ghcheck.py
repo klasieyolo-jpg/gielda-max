@@ -11,7 +11,9 @@ H = {"Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}", "Content-Type": "a
 def req(url, body=None):
     r = urllib.request.Request(url, data=json.dumps(body).encode() if body else None, headers=H)
     with urllib.request.urlopen(r, timeout=60) as x:
-        return json.loads(x.read().decode())
+        raw = x.read().decode(errors="replace")
+        print("  HTTP", x.status, x.url, "|", raw[:300].replace("\n", " "))
+        return json.loads(raw)
 
 
 try:
