@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gielda-max — panel</title>
+<style>
+  :root{
+    --bg:#f6f5f1; --card:#ffffff; --ink:#1d1d1b; --muted:#6f6d66; --line:#e4e1d8;
+    --up:#1f7a4d; --down:#b4392f; --accent:#2f4fd1; --chip:#efede6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#141413;--card:#1f1f1d;--ink:#f1efe8;--muted:#a19e95;--line:#33322e;--up:#4cc38a;--down:#ef7a6f;--accent:#8ea2ff;--chip:#2a2926}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  header{padding:22px 18px 8px;max-width:1100px;margin:auto}
+  h1{font-size:22px;margin:0 0 4px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px}
+  main{max-width:1100px;margin:auto;padding:8px 14px 40px}
+  .note{background:var(--chip);border-radius:10px;padding:8px 12px;font-size:13px;color:var(--muted);margin:10px 0 16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .tag{font-weight:700;font-size:13px;background:var(--ink);color:var(--bg);border-radius:7px;padding:2px 8px;margin-right:8px}
+  .name{font-weight:600}
+  .desc{color:var(--muted);font-size:13px;margin:4px 0 10px}
+  .val{font-size:26px;font-weight:700;letter-spacing:-.02em}
+  .chg{font-size:13px;font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .status{font-size:12px;padding:2px 8px;border-radius:20px;background:var(--chip);color:var(--muted);white-space:nowrap}
+  h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px}
+  .pos{border-top:1px solid var(--line);padding:8px 0}
+  .pos:first-of-type{border-top:0}
+  .row{display:flex;justify-content:space-between;gap:8px}
+  .tk{font-weight:700}
+  .why{color:var(--muted);font-size:13px;margin-top:2px}
+  .empty{color:var(--muted);font-size:13px}
+  .view{background:var(--chip);border-radius:10px;padding:8px 10px;font-size:13px;margin-top:10px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  td,th{text-align:left;padding:7px 6px;border-top:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;border-top:0}
+  .side{font-weight:700;font-size:12px;border-radius:6px;padding:1px 6px}
+  .BUY{background:#dff3e8;color:#1f7a4d} .SELL{background:#f8e1de;color:#b4392f}
+  @media (prefers-color-scheme: dark){.BUY{background:#1d3a2c;color:#4cc38a}.SELL{background:#45211e;color:#ef7a6f}}
+  .chartbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);margin-top:6px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .err{color:var(--down)}
+  .tablewrap{overflow-x:auto}
+</style>
+</head>
+<body>
+<header>
+  <h1>gielda-max — portfele</h1>
+  <div class="sub" id="meta">Ładowanie…</div>
+</header>
+<main>
+  <div class="note">Wyniki wirtualne (paper trading) — każdy portfel startował z 300 zł. Strona odświeża się sama co minutę.</div>
+  <div class="chartbox">
+    <div class="name">Wartość portfeli w czasie (zł)</div>
+    <div id="chart"></div>
+    <div class="legend" id="legend"></div>
+  </div>
+  <div class="grid" id="cards"></div>
+  <div class="card" style="margin-top:14px">
+    <div class="name">Ostatnie transakcje</div>
+    <div id="trades" style="margin-top:8px"></div>
+  </div>
+</main>
+<script>
+const RAW = "https://raw.githubusercontent.com/klasieyolo-jpg/gielda-max/main/";
+const INFO = {
+  A: ["Momentum spółek", "2 najsilniejsze bardzo zmienne spółki, dźwignia 2x; handluje tylko, gdy rynek rośnie."],
+  B: ["Lewarowane ETF-y", "1 ETF z dźwignią (TQQQ, SOXL…), dźwignia 2x; handluje tylko, gdy rynek rośnie."],
+  C: ["Gra na spadki", "1 odwrotny ETF (SQQQ, SOXS, TECS…), kupuje tylko, gdy rynek spada."],
+  D: ["Agent AI (Gemini)", "Model AI sam decyduje, co kupić i sprzedać; do 3 pozycji, dźwignia do 3x."],
+  E: ["Dwa agenty AI", "Jeden AI proponuje, drugi recenzuje i może tylko zmniejszyć ryzyko."],
+  BENCH: ["QQQ — kup i trzymaj", "Punkt odniesienia: zwykły ETF na Nasdaq, bez żadnych decyzji."]
+};
+const COLORS = {A:"#2f4fd1",B:"#c2410c",C:"#7c3aed",D:"#0f8a6a",E:"#d4a017",BENCH:"#8a8780"};
+const SIDE = {BUY:"KUP",SELL:"SPRZEDAJ"};
+
+function parseCSV(t){
+  const rows=[];let row=[],f="",q=false;
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){ if(c=='"'){ if(t[i+1]=='"'){f+='"';i++;} else q=false;} else f+=c; }
+    else if(c=='"') q=true; else if(c==','){row.push(f);f="";}
+    else if(c=='\n'){row.push(f);rows.push(row);row=[];f="";} else if(c!='\r') f+=c;
+  }
+  if(f||row.length){row.push(f);rows.push(row);}
+  const h=rows.shift()||[];return rows.filter(r=>r.length>1).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]])));
+}
+const fmt=(v,d=2)=>Number(v).toLocaleString("pl-PL",{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct=v=>(v>0?"+":"")+fmt(v*100,1)+"%";
+const cls=v=>v>0.0005?"up":(v<-0.0005?"down":"flat");
+const time=ts=>{const d=new Date(ts);return d.toLocaleString("pl-PL",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});};
+function nice(r){
+  r=String(r||"");
+  if(/błąd API|429|quota/i.test(r)) return "Agent AI chwilowo niedostępny (wyczerpany darmowy limit zapytań) — czeka, pozycje pilnują stop-lossy.";
+  if(/brak klucza/i.test(r)) return "Agent AI nie ma klucza — nie działa.";
+  if(/filtr reżimu \(bull\)/.test(r)) return "Rynek jest w trendzie spadkowym, więc czeka w gotówce (handluje tylko przy wzrostach).";
+  if(/filtr reżimu \(bear\)/.test(r)) return "Rynek rośnie, więc czeka w gotówce (gra tylko na spadki).";
+  return r.replace(/^agent AI \([^)]*\):\s*/,"").replace(/^AI:\s*/,"");
+}
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+async function get(path, kind){
+  const r=await fetch(RAW+path+"?t="+Date.now(),{cache:"no-store"});
+  if(!r.ok) return kind=="json"?null:"";
+  return kind=="json"?r.json():r.text();
+}
+
+async function load(){
+  try{
+    const [st, eqT, trT, decT] = await Promise.all([
+      get("state/portfolios.json","json"), get("data/equity.csv"), get("data/trades.csv"), get("data/decisions.jsonl")]);
+    if(!st){document.getElementById("meta").textContent="Brak danych — system jeszcze nie wystartował.";return;}
+    const eq=parseCSV(eqT), trades=parseCSV(trT);
+    const dec=decT.split("\n").filter(Boolean).map(l=>{try{return JSON.parse(l)}catch(e){return null}}).filter(Boolean);
+    render(st,eq,trades,dec);
+  }catch(e){document.getElementById("meta").innerHTML='<span class="err">Błąd ładowania danych: '+esc(e)+'</span>';}
+}
+
+function buyReason(dec,k,t,openedTs){
+  let best=null;
+  for(const d of dec){ if(d.portfolio==k && d.ticker==t && (d.action=="BUY"||d.action=="SWITCH") && d.ts<=openedTs) best=d; }
+  return best?best.reason:"";
+}
+
+function render(st,eq,trades,dec){
+  const keys=Object.keys(st.portfolios);
+  const lastEq={}, prevDay={}, series={};
+  const today=(eq.length?eq[eq.length-1].day:"");
+  for(const r of eq){
+    (series[r.portfolio]=series[r.portfolio]||[]).push([r.ts,+r.equity_pln]);
+    lastEq[r.portfolio]=r;
+    if(r.day<today) prevDay[r.portfolio]=+r.equity_pln;
+  }
+  const usdpln = eq.length? +eq[eq.length-1].usdpln : st.usdpln_start;
+  const ny = new Date().toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"numeric",hour12:false});
+  document.getElementById("meta").innerHTML =
+    "Ostatnia aktualizacja systemu: <b>"+(st.last_tick?time(st.last_tick):"—")+"</b> · kurs USD/PLN "+fmt(usdpln,4)+
+    " · start "+st.started_at.slice(0,10);
+
+  // karty
+  let html="";
+  for(const k of keys){
+    const pf=st.portfolios[k], info=INFO[k]||[k,(st.params[k]||{}).name||""];
+    const start=pf.start_equity_usd*st.usdpln_start;
+    const now=lastEq[k]? +lastEq[k].equity_pln : start;
+    const tot=now/start-1, day=now/(prevDay[k]||start)-1;
+    const status={ACTIVE:"aktywny",PAUSED:"wstrzymany",BANKRUPT:"bankrut"}[pf.status]||pf.status;
+    html+=`<div class="card"><div class="top"><div><span class="tag" style="background:${COLORS[k]||'#555'}">${k}</span><span class="name">${esc(info[0])}</span></div><span class="status">${status}</span></div>
+      <div class="desc">${esc(info[1])}</div>
+      <div class="val">${fmt(now)} zł</div>
+      <div class="chg"><span class="${cls(day)}">dziś ${pct(day)}</span> &nbsp;·&nbsp; <span class="${cls(tot)}">od startu ${pct(tot)}</span></div>
+      <h3>Co jest w portfelu</h3>`;
+    const pos=Object.entries(pf.positions);
+    if(!pos.length) html+=`<div class="empty">Tylko gotówka (${fmt(pf.cash_usd*usdpln)} zł).</div>`;
+    for(const [t,p] of pos){
+      const ch=p.last_price/p.entry-1, val=(p.qty*p.last_price-p.borrowed)*usdpln;
+      const why = k=="BENCH" ? "Kupione na starcie i trzymane do końca." : buyReason(dec,k,t,p.opened);
+      html+=`<div class="pos"><div class="row"><span><span class="tk">${t}</span> ${p.leverage>1?`<span class="status">dźwignia ${p.leverage}x</span>`:""}</span>
+        <span class="${cls(ch)}">${pct(ch*p.leverage)}</span></div>
+        <div class="why">wartość ok. ${fmt(val)} zł · kupione ${time(p.opened)} po ${fmt(p.entry)} USD, teraz ${fmt(p.last_price)} USD</div>
+        ${why?`<div class="why">Dlaczego: ${esc(nice(why))}</div>`:""}</div>`;
+    }
+    if(pos.length && pf.cash_usd*usdpln>1) html+=`<div class="why" style="margin-top:6px">Gotówka: ${fmt(pf.cash_usd*usdpln)} zł</div>`;
+    const v=[...dec].reverse().find(d=>d.portfolio==k && (d.action=="VIEW"||d.action=="WAIT"));
+    if(v && k!="BENCH") html+=`<div class="view"><b>Ostatnia myśl (${time(v.ts)}):</b> ${esc(nice(v.reason))}</div>`;
+    html+=`</div>`;
+  }
+  document.getElementById("cards").innerHTML=html;
+
+  // transakcje
+  const reasonFor=t=>{
+    const acts = t.side=="SELL" ? ["CLOSE"] : ["BUY","SWITCH"];
+    const d=dec.find(d=>d.ts==t.ts && d.portfolio==t.portfolio && d.ticker==t.ticker && acts.includes(d.action));
+    return nice(d?d.reason:t.reason);
+  };
+  let th="";
+  for(const t of [...trades].reverse().slice(0,40)){
+    const pnl=t.pnl_usd? (+t.pnl_usd)*usdpln : null;
+    th+=`<div class="pos"><div class="row"><span><span class="side ${t.side}">${SIDE[t.side]||t.side}</span>
+      <span class="tag" style="background:${COLORS[t.portfolio]||'#555'};margin-left:6px">${t.portfolio}</span>
+      <span class="tk">${t.ticker}</span> <span class="why">${fmt(t.price)} USD${+t.leverage>1?" · "+(+t.leverage)+"x":""}</span></span>
+      <span class="${pnl==null?'flat':cls(pnl)}">${pnl==null?"":(pnl>0?"+":"")+fmt(pnl)+" zł"}</span></div>
+      <div class="why">${time(t.ts)} · ${esc(reasonFor(t))}</div></div>`;
+  }
+  if(!trades.length) th=`<div class="empty">Brak transakcji.</div>`;
+  document.getElementById("trades").innerHTML=th;
+
+  drawChart(series, keys);
+}
+
+function drawChart(series, keys){
+  const W=1000,H=260,P={l:44,r:10,t:10,b:24};
+  const all=keys.flatMap(k=>series[k]||[]);
+  if(all.length<2){document.getElementById("chart").innerHTML='<div class="empty">Za mało danych na wykres.</div>';return;}
+  const xs=[...new Set(all.map(p=>p[0]))].sort();
+  const xi=Object.fromEntries(xs.map((x,i)=>[x,i]));
+  let lo=Math.min(...all.map(p=>p[1]),300),hi=Math.max(...all.map(p=>p[1]),300);
+  const pad=(hi-lo)*0.1||5; lo-=pad; hi+=pad;
+  const X=i=>P.l+(W-P.l-P.r)*(xs.length<2?0:i/(xs.length-1));
+  const Y=v=>P.t+(H-P.t-P.b)*(1-(v-lo)/(hi-lo));
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block">`;
+  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4,y=Y(v);
+    s+=`<line x1="${P.l}" x2="${W-P.r}" y1="${y}" y2="${y}" stroke="currentColor" stroke-opacity=".12"/><text x="${P.l-6}" y="${y+4}" font-size="11" text-anchor="end" fill="currentColor" fill-opacity=".55">${Math.round(v)}</text>`;}
+  s+=`<line x1="${P.l}" x2="${W-P.r}" y1="${Y(300)}" y2="${Y(300)}" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="4 4"/>`;
+  const days=[...new Set(xs.map(x=>x.slice(0,10)))];
+  for(const d of days){const i=xs.findIndex(x=>x.startsWith(d));s+=`<text x="${X(i)}" y="${H-6}" font-size="11" fill="currentColor" fill-opacity=".55">${d.slice(8,10)}.${d.slice(5,7)}</text>`;}
+  let lg="";
+  for(const k of keys){const pts=series[k]||[];if(!pts.length)continue;
+    s+=`<polyline fill="none" stroke="${COLORS[k]||'#555'}" stroke-width="${k=='BENCH'?1.5:2.2}" ${k=='BENCH'?'stroke-dasharray="5 4"':''} points="${pts.map(p=>X(xi[p[0]])+","+Y(p[1])).join(" ")}"/>`;
+    lg+=`<span><i style="background:${COLORS[k]||'#555'}"></i>${k} ${esc((INFO[k]||[k])[0])}</span>`;}
+  s+=`</svg>`;
+  document.getElementById("chart").innerHTML=s;
+  document.getElementById("legend").innerHTML=lg;
+}
+
+load(); setInterval(load,60000);
+</script>
+</body>
+</html>
