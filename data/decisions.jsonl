@@ -339,3 +339,10 @@
 {"ts": "2026-11-25T20:19:17Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash-lite + recenzent models/gemini-3.5-flash-lite): Rynek technologiczny pozostaje w silnym trendzie spadkowym poniżej wszystkich średnich kroczących. Utrzymujemy pozycje krótkie na indeksy i półprzewod | Recenzja: Zatwierdzono pozycje zgodne z silnym trendem spadkowym rynku, uzupełniając wagi dla zachowania ekspozycji.", "portfolio": "E"}
 {"ts": "2026-11-25T20:19:17Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Trend spadkowy QQQ poniżej średnich uzasadnia utrzymanie pozycji krótkiej.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-3.5-flash-lite", "portfolio": "E"}
 {"ts": "2026-11-25T20:19:17Z", "action": "HOLD", "ticker": "SOXS", "reason": "AI: Sektor półprzewodników nadal znajduje się pod silną presją podaży.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-3.5-flash-lite", "portfolio": "E"}
+{"ts": "2026-11-25T20:35:04Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 100d) — gotówka", "portfolio": "A"}
+{"ts": "2026-11-25T20:35:04Z", "action": "WAIT", "ticker": null, "reason": "filtr reżimu (bull): warunek rynku niespełniony (średnia 200d) — gotówka", "portfolio": "B"}
+{"ts": "2026-11-25T20:35:04Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 88.10, szczyt 97.29", "portfolio": "C"}
+{"ts": "2026-11-25T20:35:04Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 65.31, szczyt 75.72", "portfolio": "D"}
+{"ts": "2026-11-25T20:35:04Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 88.10, szczyt 97.29", "portfolio": "D"}
+{"ts": "2026-11-25T20:35:04Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 3, cena 50.54, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-25T20:35:04Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 65.31, szczyt 65.31", "portfolio": "E"}
