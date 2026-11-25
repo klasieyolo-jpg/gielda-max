@@ -195,3 +195,12 @@
 {"ts": "2026-11-25T15:17:28Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 73.39, szczyt 74.94", "portfolio": "D"}
 {"ts": "2026-11-25T15:17:28Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 95.21, szczyt 97.13", "portfolio": "D"}
 {"ts": "2026-11-25T15:17:28Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 3, cena 54.42, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 96.28, szczyt 97.13", "portfolio": "C"}
+{"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 1, cena 74.00, szczyt 74.94", "portfolio": "D"}
+{"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 96.28, szczyt 97.13", "portfolio": "D"}
+{"ts": "2026-11-25T15:32:34Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.6-flash): Rynek technologiczny znajduje się w gwałtownej wyprzedaży i krachu na spółkach AI/semiconductor. Obie odwrotne pozycje (SOXS i TECS) doskonale wpisują się w obecny silny trend spadkowy, dlatego należy je bezwzględnie trzymać.", "portfolio": "D"}
+{"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "SOXS", "reason": "AI: Kontynuacja silnego trendu spadkowego w sektorze półprzewodników, pozycja przynosi stabilny zysk.", "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "TECS", "reason": "AI: Sektor technologiczny kontynuuje mocną wyprzedaż (QQQ pod wszystkimi średnimi), krótka pozycja z dźwignią przynosi bardzo dobre rezultaty.", "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 3, cena 54.82, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-25T15:32:34Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest): Rynek technologiczny oraz spółki z sektora AI/półprzewodników znajdują się pod silną presją podaży, a QQQ przełamuje kolejne wsparcia poniżej średnich | Recenzja: Odrzucono zakup SOXS ze względu na brak wolnej gotówki (tylko 39.55 USD przy kapitału 76.14 USD) oraz ekstremalną zmienność tego instrume", "portfolio": "E"}
+{"ts": "2026-11-25T15:32:34Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Trend spadkowy na QQQ jest silny, utrzymujemy zyskowną pozycję zgodnie z rynkiem.", "model": "models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
