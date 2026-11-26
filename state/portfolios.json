@@ -197,7 +197,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T19:11:06Z",
           "opened_day": "2026-11-24",
-          "last_price": 85.83000183105469
+          "last_price": 85.93000030517578
         }
       },
       "status": "ACTIVE",
@@ -219,7 +219,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 62.196998596191406
+          "last_price": 62.130001068115234
         },
         "TECS": {
           "qty": 0.3612753498097775,
@@ -229,7 +229,7 @@
           "leverage": 3.0,
           "opened": "2026-11-24T16:39:05Z",
           "opened_day": "2026-11-24",
-          "last_price": 85.83000183105469
+          "last_price": 85.93000030517578
         }
       },
       "status": "ACTIVE",
@@ -261,7 +261,7 @@
           "leverage": 1.0,
           "opened": "2026-11-25T19:16:36Z",
           "opened_day": "2026-11-25",
-          "last_price": 62.196998596191406
+          "last_price": 62.130001068115234
         }
       },
       "status": "ACTIVE",
@@ -295,21 +295,21 @@
     }
   },
   "processed_commands": [],
-  "last_report_day": "2026-11-25",
+  "last_report_day": "2026-11-26",
   "errors": [],
-  "last_tick": "2026-11-25T21:00:41Z",
+  "last_tick": "2026-11-26T21:01:12Z",
   "last_ranking": [
     {
       "ticker": "SOXS",
-      "score": 0.3143,
-      "ret5": 0.065,
-      "ret20": 0.5635
+      "score": 0.3129,
+      "ret5": 0.0639,
+      "ret20": 0.5618
     },
     {
       "ticker": "TECS",
-      "score": 0.3113,
-      "ret5": 0.0634,
-      "ret20": 0.5591
+      "score": 0.3128,
+      "ret5": 0.0647,
+      "ret20": 0.5609
     },
     {
       "ticker": "SQQQ",
@@ -325,15 +325,15 @@
     },
     {
       "ticker": "SPXU",
-      "score": 0.1233,
-      "ret5": 0.0363,
-      "ret20": 0.2102
+      "score": 0.1224,
+      "ret5": 0.0355,
+      "ret20": 0.2093
     },
     {
       "ticker": "TZA",
-      "score": 0.0569,
-      "ret5": 0.0026,
-      "ret20": 0.1113
+      "score": 0.0567,
+      "ret5": 0.0024,
+      "ret20": 0.1111
     },
     {
       "ticker": "RIOT",
