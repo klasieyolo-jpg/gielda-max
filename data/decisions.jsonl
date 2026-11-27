@@ -363,3 +363,14 @@
 {"ts": "2026-11-27T14:46:06Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 83.79, szczyt 97.29", "portfolio": "D"}
 {"ts": "2026-11-27T14:46:06Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 48.47, szczyt 55.30", "portfolio": "E"}
 {"ts": "2026-11-27T14:46:06Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 3, cena 60.70, szczyt 65.85", "portfolio": "E"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 84.59, szczyt 97.29", "portfolio": "C"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 3, cena 60.77, szczyt 75.72", "portfolio": "D"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 84.59, szczyt 97.29", "portfolio": "D"}
+{"ts": "2026-11-27T15:01:10Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.6-flash): QQQ znajduje się poniżej średnich 50, 100 i 200-sesyjnych, co podtrzymuje silny trend spadkowy. Mimo krótkoterminowych odbić w handlu przedsesyjnym, pozycje inverse (TECS, SOXS) wciąż zachowują przewagę techniczną.", "portfolio": "D"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "SOXS", "reason": "AI: Utrzymanie pozycji odwrotnej na sektory półprzewodników w obliczu szerszego trendu spadkowego QQQ.", "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "TECS", "reason": "AI: Utrzymanie pozycji odwrotnej na sektor technologiczny, który pozostaje pod kluczowymi średnimi.", "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 48.74, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking 3, cena 60.77, szczyt 65.85", "portfolio": "E"}
+{"ts": "2026-11-27T15:01:10Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest): Sektor technologiczny notuje chwilowe odbicie podczas sesji, ale szeroki rynek (QQQ) nadal pozostaje poniżej kluczowych średnich kroczących. Utrzymuję | Recenzja: Zatwierdzono propozycję agenta bez zmian, ponieważ utrzymanie obecnych pozycji zabezpieczających jest spójne z trendem spadkowym na QQQ.", "portfolio": "E"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Zatrzymuję pozycję zgodnie z trendem spadkowym QQQ poniżej średnich.", "model": "models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
+{"ts": "2026-11-27T15:01:10Z", "action": "HOLD", "ticker": "SOXS", "reason": "AI: Utrzymuję pozycję na spadki w sektorze półprzewodników w obliczu szerszej słabości.", "model": "models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
