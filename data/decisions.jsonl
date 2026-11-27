@@ -481,3 +481,8 @@
 {"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 45.73, szczyt 55.30", "portfolio": "E"}
 {"ts": "2026-11-27T18:08:46Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest): Rynek technologiczny (QQQ) pozostaje pod kluczowymi średnimi ruchomymi, a listopad zmierza ku słabym wynikom. Utrzymujemy ekspozycję na spadki w oczek | Recenzja: Zatwierdzono decyzję agenta bez zmian, ponieważ utrzymanie pozycji na spadki (SQQQ) jest w pełni uzasadnione negatywnym trendem QQQ poniż", "portfolio": "E"}
 {"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Trzymamy pozycję zgodnie z trendem spadkowym QQQ poniżej średnich.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
+{"ts": "2026-11-27T18:26:17Z", "action": "HOLD", "ticker": "TECS", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "C"}
+{"ts": "2026-11-27T18:26:17Z", "action": "HOLD", "ticker": "TECS", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "D"}
+{"ts": "2026-11-27T18:26:17Z", "action": "HOLD", "ticker": "APP", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "D"}
+{"ts": "2026-11-27T18:26:17Z", "action": "HOLD", "ticker": "SQQQ", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "D"}
+{"ts": "2026-11-27T18:26:17Z", "action": "HOLD", "ticker": "SQQQ", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "E"}
