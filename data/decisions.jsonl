@@ -431,3 +431,16 @@
 {"ts": "2026-11-27T16:52:30Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.43, szczyt 47.28", "portfolio": "D"}
 {"ts": "2026-11-27T16:52:30Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.43, szczyt 55.30", "portfolio": "E"}
 {"ts": "2026-11-27T16:52:30Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking -, cena 54.82, szczyt 65.85", "portfolio": "E"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 81.29, szczyt 97.29", "portfolio": "C"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 81.29, szczyt 97.29", "portfolio": "D"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "APP", "reason": "ranking 1, cena 393.01, szczyt 399.42", "portfolio": "D"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.88, szczyt 47.28", "portfolio": "D"}
+{"ts": "2026-11-27T17:07:35Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3-flash-preview): Rynek technologiczny znajduje się w fazie głębokiej słabości strukturalnej (poniżej kluczowych średnich), co przy agresywnym stylu zarządzania nakazuje trzymanie pozycji krótkich oraz lidera relatywnej siły, APP.", "portfolio": "D"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "TECS", "reason": "AI: QQQ pozostaje poniżej średnich 50, 100 i 200-dniowych, co potwierdza silny trend spadkowy i zasadność pozycji short.", "model": "models/gemini-3-flash-preview", "portfolio": "D"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "APP", "reason": "AI: Mimo słabości rynku, APP wykazuje ogromną relatywną siłę i utrzymuje się powyżej SMA20.", "model": "models/gemini-3-flash-preview", "portfolio": "D"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Agresywna ochrona kapitału poprzez lewarowany instrument odwrotny na Nasdaq w obliczu ryzyka najgorszego listopada od 2008 roku.", "model": "models/gemini-3-flash-preview", "portfolio": "D"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.88, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking -, cena 56.33, szczyt 65.85", "portfolio": "E"}
+{"ts": "2026-11-27T17:07:35Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest): Indeks QQQ pozostaje poniżej głównych średnich kroczących, co potwierdza słabość rynku technologicznego. Utrzymujemy pozycje zabezpieczające (inverse  | Recenzja: Zatwierdzono propozycję agenta bez zmian, uzupełniając brakujące wagi dla otwartych pozycji inverse ETF w warunkach spadkowego trendu.", "portfolio": "E"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: QQQ pozostaje poniżej średnich, trend spadkowy wspiera pozycję na SQQQ.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
+{"ts": "2026-11-27T17:07:35Z", "action": "HOLD", "ticker": "SOXS", "reason": "AI: Sektor półprzewodników wciąż wykazuje słabość, podtrzymujemy pozycję zabezpieczającą.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
