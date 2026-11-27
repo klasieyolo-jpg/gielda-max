@@ -1,13 +1,13 @@
-# gielda-max — stan na 2026-11-27T19:43:44Z (14:43 NY)
+# gielda-max — stan na 2026-11-27T19:59:42Z (14:59 NY)
 
 | Portfel | Wartość | Dziś | Od startu | Max spadek | Transakcje zamkn. | Trafność | Koszty | Status |
 |---|---|---|---|---|---|---|---|---|
-| A — V6 spółki momentum 60d, top2, 2x (zwycięzca reguły, zamrożony) | 301.58 zł | +0.1% | +0.5% | -0.7% | 0 | - | 0.00 zł | ACTIVE |
-| B — V4 lewarowane ETF + filtr rynku, 2x (sterowany przez AI) | 301.58 zł | +0.1% | +0.5% | -0.7% | 0 | - | 0.00 zł | ACTIVE |
-| C — C1 odwrotne ETF na spadki (QQQ pod średnią 200d), 1x (zwycięzca rundy 2, zamrożony) | 284.11 zł | -7.0% | -5.3% | -18.0% | 0 | - | 1.51 zł | ACTIVE |
-| D — Agent AI (Gemini) — sam wybiera, kupuje i sprzedaje, dźwignia do 3x | 255.78 zł | -14.0% | -14.7% | -30.5% | 1 | 0% | 1.04 zł | ACTIVE |
-| E — Agent AI x2: 3.5-flash proponuje, flash-lite recenzuje, dźwignia do 3x | 261.94 zł | -10.6% | -12.7% | -16.3% | 2 | 0% | 0.62 zł | ACTIVE |
-| BENCH — Benchmark: kup i trzymaj QQQ | 304.75 zł | +2.7% | +1.6% | -4.8% | 0 | - | 0.00 zł | ACTIVE |
+| A — V6 spółki momentum 60d, top2, 2x (zwycięzca reguły, zamrożony) | 301.56 zł | +0.0% | +0.5% | -0.7% | 0 | - | 0.00 zł | ACTIVE |
+| B — V4 lewarowane ETF + filtr rynku, 2x (sterowany przez AI) | 301.56 zł | +0.0% | +0.5% | -0.7% | 0 | - | 0.00 zł | ACTIVE |
+| C — C1 odwrotne ETF na spadki (QQQ pod średnią 200d), 1x (zwycięzca rundy 2, zamrożony) | 284.10 zł | -7.0% | -5.3% | -18.0% | 0 | - | 1.51 zł | ACTIVE |
+| D — Agent AI (Gemini) — sam wybiera, kupuje i sprzedaje, dźwignia do 3x | 255.76 zł | -14.0% | -14.7% | -30.5% | 1 | 0% | 1.04 zł | ACTIVE |
+| E — Agent AI x2: 3.5-flash proponuje, flash-lite recenzuje, dźwignia do 3x | 261.93 zł | -10.6% | -12.7% | -16.3% | 2 | 0% | 0.62 zł | ACTIVE |
+| BENCH — Benchmark: kup i trzymaj QQQ | 304.73 zł | +2.7% | +1.6% | -4.8% | 0 | - | 0.00 zł | ACTIVE |
 
 ## Otwarte pozycje
 - **C**: TECS — wejście 84.37 USD, teraz 79.88 USD (-5.3% ceny, ×1 dźwignia → ok. -5.3% kapitału pozycji)
