@@ -412,3 +412,16 @@
 {"ts": "2026-11-27T16:19:59Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 47.19, szczyt 47.28", "portfolio": "D"}
 {"ts": "2026-11-27T16:19:59Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 47.19, szczyt 55.30", "portfolio": "E"}
 {"ts": "2026-11-27T16:19:59Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking -, cena 56.80, szczyt 65.85", "portfolio": "E"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 81.22, szczyt 97.29", "portfolio": "C"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 81.22, szczyt 97.29", "portfolio": "D"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "APP", "reason": "ranking 1, cena 397.75, szczyt 399.42", "portfolio": "D"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.64, szczyt 47.28", "portfolio": "D"}
+{"ts": "2026-11-27T16:35:04Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.6-flash): Rynek techniczny pozostaje w szerokim trendzie spadkowym poniżej kluczowych średnich kroczących, co uzasadnia utrzymanie pozycji niedźwiedzich oraz selektywnych akcji o silnym pędzie.", "portfolio": "D"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "TECS", "reason": "AI: Utrzymanie pozycji odwrotnej na sektor technologiczny w obliczu powszechnej słabości indeksu QQQ.", "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "APP", "reason": "AI: Kontynuacja pozycji w spółce wykazującej silną względną siłę i trend wzrostowy powyżej SMA20.", "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Ochrona kapitału poparta ujemnym układem technicznym QQQ poniżej średnich 50, 100 i 200-sesyjnych.", "model": "models/gemini-3.6-flash", "portfolio": "D"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.64, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking -, cena 55.34, szczyt 65.85", "portfolio": "E"}
+{"ts": "2026-11-27T16:35:04Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest): Rynek znajduje się w silnym trendzie spadkowym poniżej głównych średnich ruchomych, co wspiera utrzymanie pozycji na spadki (SQQQ, SOXS). | Recenzja: Zatwierdzono propozycję agenta bez zmian, uzupełniając jedynie wagi pozycji, ponieważ są one spójne z silnym trendem spadkowym szerokiego rynku.", "portfolio": "E"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Utrzymujemy pozycję krótką, ponieważ QQQ pozostaje poniżej kluczowych średnich kroczących.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
+{"ts": "2026-11-27T16:35:04Z", "action": "HOLD", "ticker": "SOXS", "reason": "AI: Zatrzymujemy pozycję na spadki w sektorze półprzewodników zgodnie z panującym trendem.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
