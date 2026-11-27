@@ -229,7 +229,7 @@
           "leverage": 1.0,
           "opened": "2026-11-27T16:02:21Z",
           "opened_day": "2026-11-27",
-          "last_price": 398.5799865722656
+          "last_price": 399.2200012207031
         },
         "SQQQ": {
           "qty": 1.6612161336226299,
@@ -239,7 +239,7 @@
           "leverage": 3.0,
           "opened": "2026-11-27T16:02:21Z",
           "opened_day": "2026-11-27",
-          "last_price": 46.00389862060547
+          "last_price": 45.72999954223633
         }
       },
       "status": "ACTIVE",
@@ -261,7 +261,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 46.00389862060547
+          "last_price": 45.72999954223633
         }
       },
       "status": "ACTIVE",
@@ -283,7 +283,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T14:31:00Z",
           "opened_day": "2026-11-24",
-          "last_price": 646.5499877929688
+          "last_price": 650.760009765625
         }
       },
       "status": "ACTIVE",
@@ -297,38 +297,38 @@
   "processed_commands": [],
   "last_report_day": "2026-11-26",
   "errors": [],
-  "last_tick": "2026-11-27T17:53:40Z",
+  "last_tick": "2026-11-27T18:08:46Z",
   "last_ranking": [
     {
       "ticker": "APP",
-      "score": 0.2956,
-      "ret5": 0.042,
-      "ret20": 0.5493
+      "score": 0.3097,
+      "ret5": 0.0533,
+      "ret20": 0.5661
     },
     {
       "ticker": "TECS",
-      "score": 0.1877,
-      "ret5": -0.0506,
-      "ret20": 0.4261
+      "score": 0.1684,
+      "ret5": -0.0661,
+      "ret20": 0.4029
     },
     {
       "ticker": "RIOT",
-      "score": 0.1307,
-      "ret5": -0.0127,
-      "ret20": 0.274
+      "score": 0.1413,
+      "ret5": -0.0034,
+      "ret20": 0.286
     },
     {
       "ticker": "SQQQ",
-      "score": 0.0902,
-      "ret5": -0.0546,
-      "ret20": 0.235
+      "score": 0.0671,
+      "ret5": -0.0747,
+      "ret20": 0.2088
     },
     {
       "ticker": "SPXU",
-      "score": 0.0454,
-      "ret5": -0.0592,
-      "ret20": 0.1499
+      "score": 0.0323,
+      "ret5": -0.0709,
+      "ret20": 0.1356
     }
   ],
-  "last_llm_ts": "2026-11-27T17:36:11Z"
+  "last_llm_ts": "2026-11-27T18:08:46Z"
 }

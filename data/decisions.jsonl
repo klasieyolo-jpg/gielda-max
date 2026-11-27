@@ -470,3 +470,14 @@
 {"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.72, szczyt 55.30", "portfolio": "E"}
 {"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking -, cena 56.45, szczyt 65.85", "portfolio": "E"}
 {"ts": "2026-11-27T17:59:44Z", "action": "CLOSE", "ticker": "SOXS", "portfolio": "E", "reason": "kontrola ryzyka (co ~2 min): STOP-LOSS przy 53.46", "pnl_usd": -5.9}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 79.88, szczyt 97.29", "portfolio": "C"}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 79.88, szczyt 97.29", "portfolio": "D"}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "APP", "reason": "ranking 1, cena 399.22, szczyt 399.42", "portfolio": "D"}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 45.73, szczyt 47.28", "portfolio": "D"}
+{"ts": "2026-11-27T18:08:46Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.1-flash-lite): Rynek pozostaje pod presją poniżej kluczowych średnich, co uzasadnia utrzymanie niedźwiedzich pozycji przy jednoczesnym zachowaniu silnego APP jako hedge'a wzrostowego.", "portfolio": "D"}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "TECS", "reason": "AI: Utrzymuję pozycję mimo straty, czekając na kontynuację trendu spadkowego QQQ.", "model": "models/gemini-3.1-flash-lite", "portfolio": "D"}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "APP", "reason": "AI: Silny trend wzrostowy i momentum, trzymam jako jedyną pozycję long.", "model": "models/gemini-3.1-flash-lite", "portfolio": "D"}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Rynek poniżej średnich, utrzymuję ekspozycję na spadki Nasdaq.", "model": "models/gemini-3.1-flash-lite", "portfolio": "D"}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 45.73, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-27T18:08:46Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest): Rynek technologiczny (QQQ) pozostaje pod kluczowymi średnimi ruchomymi, a listopad zmierza ku słabym wynikom. Utrzymujemy ekspozycję na spadki w oczek | Recenzja: Zatwierdzono decyzję agenta bez zmian, ponieważ utrzymanie pozycji na spadki (SQQQ) jest w pełni uzasadnione negatywnym trendem QQQ poniż", "portfolio": "E"}
+{"ts": "2026-11-27T18:08:46Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Trzymamy pozycję zgodnie z trendem spadkowym QQQ poniżej średnich.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
