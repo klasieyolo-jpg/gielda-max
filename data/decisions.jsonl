@@ -545,3 +545,8 @@
 {"ts": "2026-11-27T20:14:46Z", "action": "HOLD", "ticker": "SQQQ", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "E"}
 {"ts": "2026-11-27T20:14:46Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest): Rynek nadal znajduje się poniżej głównych średnich kroczących, ale notuje silne sesje w okresie Black Friday, dlatego utrzymuję pozycję SQQQ bez zmian | Recenzja: Zatwierdzono propozycję agenta bez zmian, ponieważ ostrożne utrzymanie pozycji SQQQ jest logiczne przy obecnym zachowaniu indeksu QQQ.", "portfolio": "E"}
 {"ts": "2026-11-27T20:14:46Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Rynek jest poniżej głównych średnich, ale notowania odrabiają straty w trakcie Black Friday, co uzasadnia dalsze monitorowanie pozycji.", "model": "models/gemini-3.5-flash-lite + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
+{"ts": "2026-11-27T20:30:05Z", "action": "HOLD", "ticker": "TECS", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "C"}
+{"ts": "2026-11-27T20:30:05Z", "action": "HOLD", "ticker": "TECS", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "D"}
+{"ts": "2026-11-27T20:30:05Z", "action": "HOLD", "ticker": "APP", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "D"}
+{"ts": "2026-11-27T20:30:05Z", "action": "HOLD", "ticker": "SQQQ", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "D"}
+{"ts": "2026-11-27T20:30:05Z", "action": "HOLD", "ticker": "SQQQ", "reason": "brak świeżej ceny — nie ruszam pozycji (ryzyko: błędne dane)", "portfolio": "E"}
