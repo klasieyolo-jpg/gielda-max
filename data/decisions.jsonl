@@ -463,3 +463,9 @@
 {"ts": "2026-11-27T17:36:11Z", "action": "VIEW", "ticker": null, "reason": "agent AI (models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest): Rynek technologiczny (QQQ) doświadcza krótkoterminowego korekcyjnego odbicia, ale długoterminowy trend pozostaje spadkowy (pod średnimi 50, 100 i 200d | Recenzja: Zatwierdzono propozycję agenta bez zmian, uzupełniając wagi pozycji dla przejrzystości portfela przy braku wolnej gotówki.", "portfolio": "E"}
 {"ts": "2026-11-27T17:36:11Z", "action": "HOLD", "ticker": "SQQQ", "reason": "AI: Utrzymujemy pozycję zgodnie z trendem spadkowym szerokiego rynku poniżej średnich ruchomych.", "model": "models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
 {"ts": "2026-11-27T17:36:11Z", "action": "HOLD", "ticker": "SOXS", "reason": "AI: Zatrzymujemy pozycję na inwersyjnym ETF półprzewodników pomimo chwilowego odbicia.", "model": "models/gemini-3.5-flash + recenzent models/gemini-flash-lite-latest", "portfolio": "E"}
+{"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 1, cena 81.20, szczyt 97.29", "portfolio": "C"}
+{"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "TECS", "reason": "ranking 2, cena 81.20, szczyt 97.29", "portfolio": "D"}
+{"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "APP", "reason": "ranking 1, cena 394.93, szczyt 399.42", "portfolio": "D"}
+{"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.72, szczyt 47.28", "portfolio": "D"}
+{"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.72, szczyt 55.30", "portfolio": "E"}
+{"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking -, cena 56.45, szczyt 65.85", "portfolio": "E"}
