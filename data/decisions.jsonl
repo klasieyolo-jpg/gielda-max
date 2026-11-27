@@ -469,3 +469,4 @@
 {"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.72, szczyt 47.28", "portfolio": "D"}
 {"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "SQQQ", "reason": "ranking 4, cena 46.72, szczyt 55.30", "portfolio": "E"}
 {"ts": "2026-11-27T17:53:40Z", "action": "HOLD", "ticker": "SOXS", "reason": "ranking -, cena 56.45, szczyt 65.85", "portfolio": "E"}
+{"ts": "2026-11-27T17:59:44Z", "action": "CLOSE", "ticker": "SOXS", "portfolio": "E", "reason": "kontrola ryzyka (co ~2 min): STOP-LOSS przy 53.46", "pnl_usd": -5.9}

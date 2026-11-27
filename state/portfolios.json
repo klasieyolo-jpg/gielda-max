@@ -197,7 +197,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T19:11:06Z",
           "opened_day": "2026-11-24",
-          "last_price": 81.19999694824219
+          "last_price": 79.87999725341797
         }
       },
       "status": "ACTIVE",
@@ -219,7 +219,7 @@
           "leverage": 3.0,
           "opened": "2026-11-24T16:39:05Z",
           "opened_day": "2026-11-24",
-          "last_price": 81.19999694824219
+          "last_price": 79.87999725341797
         },
         "APP": {
           "qty": 0.06576196633156192,
@@ -229,7 +229,7 @@
           "leverage": 1.0,
           "opened": "2026-11-27T16:02:21Z",
           "opened_day": "2026-11-27",
-          "last_price": 394.92999267578125
+          "last_price": 398.5799865722656
         },
         "SQQQ": {
           "qty": 1.6612161336226299,
@@ -239,7 +239,7 @@
           "leverage": 3.0,
           "opened": "2026-11-27T16:02:21Z",
           "opened_day": "2026-11-27",
-          "last_price": 46.720001220703125
+          "last_price": 46.00389862060547
         }
       },
       "status": "ACTIVE",
@@ -250,7 +250,7 @@
       "last_interest_date": "2026-11-27"
     },
     "E": {
-      "cash_usd": 3.1817432265683863,
+      "cash_usd": 33.61526482500605,
       "start_equity_usd": 73.83797243018822,
       "positions": {
         "SQQQ": {
@@ -261,22 +261,12 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 46.720001220703125
-        },
-        "SOXS": {
-          "qty": 0.5707024080027936,
-          "entry": 63.66535469436646,
-          "peak": 65.84500122070312,
-          "borrowed": 0.0,
-          "leverage": 1.0,
-          "opened": "2026-11-25T19:16:36Z",
-          "opened_day": "2026-11-25",
-          "last_price": 56.45000076293945
+          "last_price": 46.00389862060547
         }
       },
       "status": "ACTIVE",
       "trades_day": {
-        "date": "2026-11-25",
+        "date": "2026-11-27",
         "n": 1
       },
       "last_interest_date": "2026-11-27"
