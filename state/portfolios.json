@@ -197,7 +197,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T19:11:06Z",
           "opened_day": "2026-11-24",
-          "last_price": 79.87999725341797
+          "last_price": 78.5
         }
       },
       "status": "ACTIVE",
@@ -219,7 +219,7 @@
           "leverage": 3.0,
           "opened": "2026-11-24T16:39:05Z",
           "opened_day": "2026-11-24",
-          "last_price": 79.87999725341797
+          "last_price": 78.5
         },
         "APP": {
           "qty": 0.06576196633156192,
@@ -229,7 +229,7 @@
           "leverage": 1.0,
           "opened": "2026-11-27T16:02:21Z",
           "opened_day": "2026-11-27",
-          "last_price": 399.2200012207031
+          "last_price": 399.2099914550781
         },
         "SQQQ": {
           "qty": 1.6612161336226299,
@@ -239,7 +239,7 @@
           "leverage": 3.0,
           "opened": "2026-11-27T16:02:21Z",
           "opened_day": "2026-11-27",
-          "last_price": 45.72999954223633
+          "last_price": 45.7599983215332
         }
       },
       "status": "ACTIVE",
@@ -261,7 +261,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 45.72999954223633
+          "last_price": 45.7599983215332
         }
       },
       "status": "ACTIVE",
@@ -283,7 +283,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T14:31:00Z",
           "opened_day": "2026-11-24",
-          "last_price": 650.760009765625
+          "last_price": 650.989990234375
         }
       },
       "status": "ACTIVE",
@@ -295,7 +295,7 @@
     }
   },
   "processed_commands": [],
-  "last_report_day": "2026-11-26",
+  "last_report_day": "2026-11-27",
   "errors": [
     "2026-11-27T18:26:17Z Za mało świeżych cen (0/32) — brak nowych wejść",
     "2026-11-27T18:41:22Z Za mało świeżych cen (0/32) — brak nowych wejść",
@@ -308,7 +308,38 @@
     "2026-11-27T20:30:05Z Za mało świeżych cen (0/32) — brak nowych wejść",
     "2026-11-27T20:45:10Z Za mało świeżych cen (0/32) — brak nowych wejść"
   ],
-  "last_tick": "2026-11-27T20:45:10Z",
-  "last_ranking": [],
+  "last_tick": "2026-11-27T21:00:26Z",
+  "last_ranking": [
+    {
+      "ticker": "APP",
+      "score": 0.3097,
+      "ret5": 0.0533,
+      "ret20": 0.5661
+    },
+    {
+      "ticker": "TECS",
+      "score": 0.1482,
+      "ret5": -0.0822,
+      "ret20": 0.3786
+    },
+    {
+      "ticker": "RIOT",
+      "score": 0.14,
+      "ret5": -0.0045,
+      "ret20": 0.2846
+    },
+    {
+      "ticker": "SQQQ",
+      "score": 0.0678,
+      "ret5": -0.0741,
+      "ret20": 0.2096
+    },
+    {
+      "ticker": "SPXU",
+      "score": 0.0321,
+      "ret5": -0.0712,
+      "ret20": 0.1353
+    }
+  ],
   "last_llm_ts": "2026-11-27T20:45:10Z"
 }
