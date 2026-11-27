@@ -197,7 +197,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T19:11:06Z",
           "opened_day": "2026-11-24",
-          "last_price": 83.33309936523438
+          "last_price": 82.11000061035156
         }
       },
       "status": "ACTIVE",
@@ -208,19 +208,9 @@
       "last_interest_date": null
     },
     "D": {
-      "cash_usd": 0.6366612237192353,
+      "cash_usd": 56.85088108920663,
       "start_equity_usd": 73.83797243018822,
       "positions": {
-        "SOXS": {
-          "qty": 0.9976988984904208,
-          "entry": 62.844125000000005,
-          "peak": 75.7249984741211,
-          "borrowed": 0.0,
-          "leverage": 1.0,
-          "opened": "2026-11-24T15:50:31Z",
-          "opened_day": "2026-11-24",
-          "last_price": 58.650001525878906
-        },
         "TECS": {
           "qty": 0.3612753498097775,
           "entry": 86.34933122253419,
@@ -229,13 +219,13 @@
           "leverage": 3.0,
           "opened": "2026-11-24T16:39:05Z",
           "opened_day": "2026-11-24",
-          "last_price": 83.33309936523438
+          "last_price": 82.11000061035156
         }
       },
       "status": "ACTIVE",
       "trades_day": {
-        "date": "2026-11-24",
-        "n": 2
+        "date": "2026-11-27",
+        "n": 1
       },
       "last_interest_date": "2026-11-27"
     },
@@ -251,7 +241,7 @@
           "leverage": 1.0,
           "opened": "2026-11-24T15:50:31Z",
           "opened_day": "2026-11-24",
-          "last_price": 47.8849983215332
+          "last_price": 46.994998931884766
         },
         "SOXS": {
           "qty": 0.5707024080027936,
@@ -261,7 +251,7 @@
           "leverage": 1.0,
           "opened": "2026-11-25T19:16:36Z",
           "opened_day": "2026-11-25",
-          "last_price": 58.650001525878906
+          "last_price": 56.48500061035156
         }
       },
       "status": "ACTIVE",
